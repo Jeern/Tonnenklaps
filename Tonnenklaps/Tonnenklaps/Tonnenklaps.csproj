@@ -110,6 +110,7 @@
     <Compile Include="Controller\TKButtons.cs" />
     <Compile Include="Controller\ITonnenKlapsController.cs" />
     <Compile Include="Controller\TonnenKlapsBuzzController.cs" />
+    <Compile Include="Model\PhysicalStaff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controller\TonnenKlapsGPController.cs" />
