@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Tonnenklaps.Model;
+using Tonnenklaps.Util;
 
 namespace Tonnenklaps.Sprites
 {
@@ -13,8 +14,10 @@ namespace Tonnenklaps.Sprites
         public PhysicalStaff[] m_PhysicalStaffs = new PhysicalStaff[NumberOfStaffs];
         public VisualStaff[] m_VisualStaffs = new VisualStaff[NumberOfStaffs];
 
-        public Barrel(Game game) : base(game)
+        public Barrel(Game game, Vector2 position) : base(game)
         {
+            m_CurrentPosition = Vector2.Zero;
+            m_StartPosition = position;
         }
 
         public override void Initialize()
@@ -29,17 +32,33 @@ namespace Tonnenklaps.Sprites
             {
                 m_PhysicalStaffs[i] = new PhysicalStaff();
                 m_PhysicalStaffs[i].Destroyed = false;
-                m_PhysicalStaffs[i].Color = Color.Red;
+                m_PhysicalStaffs[i].Color = ColorUtils.GetRandomColor();
                 m_VisualStaffs[i] = new VisualStaff(Game, Vector2.Zero);
                 m_VisualStaffs[i].PhysicalStaffIndex = i;
             }
+            SetStartPositions();
+        }
+
+        private void SetStartPositions()
+        {
+            //Sætter positionen på hver enkelt VisualStaff.
+            //TODO: Gør det her...
+            //Herefter sættes den i forhold til 
+            SetPosition(m_StartPosition);
         }
 
         public override void Update(GameTime gameTime)
         {
             for (int i = 0; i < NumberOfStaffs; i++)
             {
-                m_VisualStaffs[i].TheColor = m_PhysicalStaffs[m_VisualStaffs[i].PhysicalStaffIndex].Color;
+                if (i <= 5)
+                {
+                    m_VisualStaffs[i].TheColor = ColorUtils.GetFrontColor(m_PhysicalStaffs[m_VisualStaffs[i].PhysicalStaffIndex].Color);
+                }
+                else
+                {
+                    m_VisualStaffs[i].TheColor = ColorUtils.GetBackColor(m_PhysicalStaffs[m_VisualStaffs[i].PhysicalStaffIndex].Color);
+                }
                 m_VisualStaffs[i].Visible = !m_PhysicalStaffs[m_VisualStaffs[i].PhysicalStaffIndex].Destroyed;
             }
         }
@@ -59,6 +78,20 @@ namespace Tonnenklaps.Sprites
             m_VisualStaffs[1].Draw(gameTime);
             m_VisualStaffs[3].Draw(gameTime);
             m_VisualStaffs[2].Draw(gameTime);
+        }
+
+        private Vector2 m_CurrentPosition;
+        private Vector2 m_StartPosition;
+        
+
+        public void SetPosition(Vector2 position)
+        {
+            Vector2 offSet = position - m_CurrentPosition;
+            foreach (VisualStaff visualStaff in m_VisualStaffs)
+            {
+                visualStaff.Position += offSet;
+            }
+            m_CurrentPosition = position;
         }
 
         
