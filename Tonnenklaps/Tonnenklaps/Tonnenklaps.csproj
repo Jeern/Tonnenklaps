@@ -114,6 +114,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Controller\TonnenKlapsGPController.cs" />
     <Compile Include="Sprites\Barrel.cs" />
+    <Compile Include="Sprites\Staff.cs" />
     <Compile Include="TonnenklapsGame.cs" />
   </ItemGroup>
   <ItemGroup>
