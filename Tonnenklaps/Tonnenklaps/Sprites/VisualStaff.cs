@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using GameDev.Sprites;
 using Microsoft.Xna.Framework;
+using GameDev.GraphicUtils;
 
 namespace Tonnenklaps.Sprites
 {
@@ -15,7 +16,7 @@ namespace Tonnenklaps.Sprites
         }
 
 
-        protected override GameDev.GraphicUtils.ImageState ResetImageState()
+        protected override ImageState ResetImageState()
         {
             throw new NotImplementedException();
         }
