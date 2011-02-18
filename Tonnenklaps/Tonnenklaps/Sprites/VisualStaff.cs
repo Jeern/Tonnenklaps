@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace Tonnenklaps.Sprites
 {
-    public class Staff : Sprite
+    public class VisualStaff : Sprite
     {
-        public Staff(Game game, Vector2 startpos) : base(game, startpos)
+        public VisualStaff(Game game, Vector2 startpos) : base(game, startpos)
         {
 
         }
