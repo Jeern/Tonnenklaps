@@ -20,5 +20,11 @@ namespace Tonnenklaps.Sprites
         {
             throw new NotImplementedException();
         }
+
+        public int PhysicalStaffIndex
+        {
+            get;
+            set;
+        }
     }
 }
