@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tonnenklaps", "Tonnenklaps\
 EndProject
 Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TonnenklapsContent", "Tonnenklaps\TonnenklapsContent\TonnenklapsContent.contentproj", "{82CAB073-6826-4A96-8F41-5618CE2C4350}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDev", "GameDev\GameDev.csproj", "{320BCDBC-D8D5-4682-A149-C960C2E0DB88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDevContent", "GameDevContent\GameDevContent.contentproj", "{A49A161F-C75D-4E53-903F-FBDD40C6954F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,6 +21,12 @@ Global
 		{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}.Release|x86.Build.0 = Release|x86
 		{82CAB073-6826-4A96-8F41-5618CE2C4350}.Debug|x86.ActiveCfg = Debug|x86
 		{82CAB073-6826-4A96-8F41-5618CE2C4350}.Release|x86.ActiveCfg = Release|x86
+		{320BCDBC-D8D5-4682-A149-C960C2E0DB88}.Debug|x86.ActiveCfg = Debug|x86
+		{320BCDBC-D8D5-4682-A149-C960C2E0DB88}.Debug|x86.Build.0 = Debug|x86
+		{320BCDBC-D8D5-4682-A149-C960C2E0DB88}.Release|x86.ActiveCfg = Release|x86
+		{320BCDBC-D8D5-4682-A149-C960C2E0DB88}.Release|x86.Build.0 = Release|x86
+		{A49A161F-C75D-4E53-903F-FBDD40C6954F}.Debug|x86.ActiveCfg = Debug|x86
+		{A49A161F-C75D-4E53-903F-FBDD40C6954F}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
