@@ -118,6 +118,8 @@
     <Compile Include="Sprites\RotatingBarrel.cs" />
     <Compile Include="Sprites\VisualStaff.cs" />
     <Compile Include="TonnenklapsGame.cs" />
+    <Compile Include="Util\ColorUtils.cs" />
+    <Compile Include="Util\PossibleColors.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
