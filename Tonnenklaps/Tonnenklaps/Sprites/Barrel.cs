@@ -8,6 +8,8 @@ namespace Tonnenklaps.Sprites
 {
     public class Barrel : DrawableGameComponent
     {
+
+
         public Barrel(Game game) : base(game)
         {
 
