@@ -8,20 +8,21 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GameDev.Utils;
+using Tonnenklaps.Controller;
 
 namespace Tonnenklaps
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class TonnenklapsGame : Microsoft.Xna.Framework.Game
+    public class TonnenklapsGame : GameDevGame
     {
-        GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ITonnenKlapsController m_Controller;
 
         public TonnenklapsGame()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -34,6 +35,7 @@ namespace Tonnenklaps
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            m_Controller = new TonnenKlapsGPController();
 
             base.Initialize();
         }
@@ -66,6 +68,11 @@ namespace Tonnenklaps
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            m_Controller.GetState(PlayerIndex.One, gameTime);
+            m_Controller.GetState(PlayerIndex.Two, gameTime);
+            m_Controller.GetState(PlayerIndex.Three, gameTime);
+            m_Controller.GetState(PlayerIndex.Four, gameTime);
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
