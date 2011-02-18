@@ -53,15 +53,18 @@ namespace GameDev.Sprites
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            Game.CurrentSpriteBatch().Draw(ImageState,
-               Position - (m_Camera().Position * Layer), // + Middle,
-               null,
-               TheColor,
-               0F,
-               Vector2.Zero, //Formerly Middle
-               Scale,
-               SpriteEffects.None,
-               Math.Min(Layer, 1f)); //Layer
+            if (Visible)
+            {
+                Game.CurrentSpriteBatch().Draw(ImageState,
+                   Position - (m_Camera().Position * Layer), // + Middle,
+                   null,
+                   TheColor,
+                   0F,
+                   Vector2.Zero, //Formerly Middle
+                   Scale,
+                   SpriteEffects.None,
+                   Math.Min(Layer, 1f)); //Layer
+            }
         }
 
         public void BaseDraw(GameTime gameTime)
