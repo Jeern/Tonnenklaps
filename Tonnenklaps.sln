@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tonnenklaps", "Tonnenklaps\Tonnenklaps\Tonnenklaps.csproj", "{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TonnenklapsContent", "Tonnenklaps\TonnenklapsContent\TonnenklapsContent.contentproj", "{82CAB073-6826-4A96-8F41-5618CE2C4350}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}.Debug|x86.ActiveCfg = Debug|x86
+		{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}.Debug|x86.Build.0 = Debug|x86
+		{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}.Release|x86.ActiveCfg = Release|x86
+		{82E0BC7D-91CD-4C6B-BC33-092F2368B3BE}.Release|x86.Build.0 = Release|x86
+		{82CAB073-6826-4A96-8F41-5618CE2C4350}.Debug|x86.ActiveCfg = Debug|x86
+		{82CAB073-6826-4A96-8F41-5618CE2C4350}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
