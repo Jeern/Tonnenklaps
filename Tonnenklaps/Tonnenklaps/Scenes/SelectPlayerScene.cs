@@ -40,19 +40,19 @@ namespace Tonnenklaps.Scenes
             int crownX = 15;
 
             m_TextUtil1 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil1.SetText("P1");
+            m_TextUtil1.SetText(GetText("P1", PlayerIndex.One));
             AddComponent(m_TextUtil1);
             textX += Spacing;
             m_TextUtil2 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil2.SetText("P2");
+            m_TextUtil2.SetText(GetText("P2", PlayerIndex.Two));
             AddComponent(m_TextUtil2);
             textX += Spacing;
             m_TextUtil3 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil3.SetText("P3");
+            m_TextUtil3.SetText(GetText("P3", PlayerIndex.Three));
             AddComponent(m_TextUtil3);
             textX += Spacing;
             m_TextUtil4 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil4.SetText("P4");
+            m_TextUtil4.SetText(GetText("P4", PlayerIndex.Four));
             AddComponent(m_TextUtil4);
 
             GameEnvironment.CurrentPlayers = new List<Player>();
@@ -82,6 +82,14 @@ namespace Tonnenklaps.Scenes
             base.LoadContent();
         }
 
+        private string GetText(string def, PlayerIndex playerIndex)
+        {
+            if (GamePad.GetCapabilities(playerIndex).IsConnected)
+                return def;
+
+            return "??";
+        }
+
         public override void OnEnter()
         {
             int crownX = 10;
@@ -101,6 +109,10 @@ namespace Tonnenklaps.Scenes
                 player.Crown = crown;
                 crown.TheColor = ColorUtils.GetRandomColor(ColorUtils.GetPlayerColor(playerIndex));
                 GameEnvironment.CurrentPlayers.Add(player);
+            }
+            else
+            {
+                crown.TheColor = new Color(255, 255, 255, 200);
             }
         }
 
