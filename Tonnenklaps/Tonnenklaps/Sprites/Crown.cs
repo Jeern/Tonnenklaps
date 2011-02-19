@@ -19,7 +19,7 @@ namespace Tonnenklaps.Sprites
         public Crown()
         {
            Initialize();
-            Scale = 0.4F;
+            Scale = 0.3F;
         }
      
         protected override void LoadContent()

@@ -52,11 +52,11 @@ namespace GameDev.Utils
 
         protected override void Initialize()
         {
-            base.Initialize();
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             ParticleSpriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             this.DebugFont = Content.Load<SpriteFont>("DebugFont");
+            base.Initialize();
         }
 
 

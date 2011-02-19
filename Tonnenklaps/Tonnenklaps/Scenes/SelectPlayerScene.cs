@@ -9,17 +9,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Tonnenklaps.Util;
 using Tonnenklaps.Sprites;
+using GameDev.Text;
 
 namespace Tonnenklaps.Scenes
 {
     public class SelectPlayerScene : StaticScene
     {
-        private Crown m_Crown1;
-        private Crown m_Crown2;
-        private Crown m_Crown3;
-        private Crown m_Crown4;
 
         private List<Crown> m_Crowns = new List<Crown>();
+        private TextUtil m_TextUtil1;
+        private TextUtil m_TextUtil2;
+        private TextUtil m_TextUtil3;
+        private TextUtil m_TextUtil4;
 
 
         public SelectPlayerScene(string textureFile) : base(textureFile)
@@ -31,26 +32,50 @@ namespace Tonnenklaps.Scenes
             base.Initialize();
         }
 
+        private const int Spacing = 190;
+
         protected override void LoadContent()
         {
+            int textX = 75;
+            int crownX = 10;
+
+            m_TextUtil1 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil1.SetText("P1");
+            AddComponent(m_TextUtil1);
+            textX += Spacing;
+            m_TextUtil2 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil2.SetText("P2");
+            AddComponent(m_TextUtil2);
+            textX += Spacing;
+            m_TextUtil3 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil3.SetText("P3");
+            AddComponent(m_TextUtil3);
+            textX += Spacing;
+            m_TextUtil4 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil4.SetText("P4");
+            AddComponent(m_TextUtil4);
+
             GameEnvironment.CurrentPlayers = new List<Player>();
             var crown = new Crown();
-            crown.Position = new Vector2(10, 10);
+            crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.One, crown);
             AddComponent(crown);
+            crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(100, 10);
+            crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Two, crown);
             AddComponent(crown);
+            crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(190, 10);
+            crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Three, crown);
             AddComponent(crown);
+            crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(280, 10);
+            crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Four, crown);
             AddComponent(crown);
@@ -73,6 +98,7 @@ namespace Tonnenklaps.Scenes
         {
             base.Draw(gameTime);
             DrawCrowns(gameTime);
+            DrawText(gameTime);
         }
 
         private void DrawCrowns(GameTime gameTime)
@@ -83,6 +109,13 @@ namespace Tonnenklaps.Scenes
             }
         }
 
+        private void DrawText(GameTime gameTime)
+        {
+            m_TextUtil1.Draw(gameTime);
+            m_TextUtil2.Draw(gameTime);
+            m_TextUtil3.Draw(gameTime);
+            m_TextUtil4.Draw(gameTime);
+        }
 
     }
 }
