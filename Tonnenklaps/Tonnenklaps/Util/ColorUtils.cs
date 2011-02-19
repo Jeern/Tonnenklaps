@@ -30,13 +30,13 @@ namespace Tonnenklaps.Util
             switch (color)
             {
                 case PossibleColors.Blue:
-                    return Color.Brown;
+                    return Color.Blue;
                 case PossibleColors.Red:
-                    return Color.Brown;
+                    return Color.Red;
                 case PossibleColors.Yellow:
-                    return Color.Brown;
+                    return Color.Yellow;
                 case PossibleColors.Green:
-                    return Color.Brown;
+                    return Color.Green;
                 default:
                     throw new ArgumentException("Cannot convert this color");
             }

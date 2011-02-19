@@ -68,7 +68,7 @@ namespace Tonnenklaps.Sprites
 
             for (int i = 0; i < NumberOfStaffs; i++)
             {
-                if (i <= 5)
+                if (i <= 3 || i >= 11)
                 {
                     m_VisualStaffs[i].TheColor = ColorUtils.GetFrontColor(m_PhysicalStaffs[m_VisualStaffs[i].PhysicalStaffIndex].Color);
                 }
