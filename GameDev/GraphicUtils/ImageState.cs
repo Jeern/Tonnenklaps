@@ -63,7 +63,7 @@ namespace GameDev.GraphicUtils
             return state.CurrentTexture;
         }
 
-        public static implicit operator ImageState( Texture2D state)
+        public static implicit operator ImageState(Texture2D state)
         {
             return new ImageState(state, StateChangeType.None);
         }
