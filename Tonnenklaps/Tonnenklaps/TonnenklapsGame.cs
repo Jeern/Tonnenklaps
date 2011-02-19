@@ -97,7 +97,7 @@ namespace Tonnenklaps
             m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => m_PlayingScene.GameOver() ));
 //            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
             //            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
-            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_PlayingScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
 
             Components.Add(m_WinScene);
             Components.Add(m_SplashScreen);
