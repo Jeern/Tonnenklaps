@@ -6,7 +6,12 @@ using GameDev.Scenes;
 
 namespace Tonnenklaps.Scenes
 {
-    public class ChooseModeScene : Scene
+    public class ChooseModeScene : StaticScene
     {
+        public ChooseModeScene(string textureFile) : base(textureFile)
+            
+        {
+        }
+
     }
 }

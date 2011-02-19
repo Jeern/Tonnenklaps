@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Conditions.cs" />
     <Compile Include="Controller\TKButtons.cs" />
     <Compile Include="Controller\ITonnenKlapsController.cs" />
     <Compile Include="Controller\TonnenKlapsBuzzController.cs" />
