@@ -20,7 +20,6 @@ namespace Tonnenklaps.Sprites
         {
            Initialize();
             Scale = 0.4F;
-            this.TheColor = Color.Green;
         }
      
         protected override void LoadContent()
