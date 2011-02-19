@@ -63,6 +63,11 @@ namespace GameDev.GraphicUtils
             return state.CurrentTexture;
         }
 
+        public static implicit operator ImageState( Texture2D state)
+        {
+            return new ImageState(state, StateChangeType.None);
+        }
+
         private TimeSpan m_LastChanged = TimeSpan.MinValue;
 
         public void Update(GameTime time)

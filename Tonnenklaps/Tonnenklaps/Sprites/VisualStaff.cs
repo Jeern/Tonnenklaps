@@ -11,17 +11,36 @@ namespace Tonnenklaps.Sprites
 {
     public class VisualStaff : Sprite
     {
-        private int m_VisualIndex;
-        public VisualStaff(Vector2 startpos, int visualIndex) : base(startpos)
+        private int m_VisualIndex, m_rotationState;
+        private ImageState[] m_imageStates;
+        public VisualStaff(Vector2 startpos, int visualIndex, ImageState[] imageStates)
+            : base(startpos)
         {
             m_VisualIndex = visualIndex;
-            ImageState = ResetImageState();
+            m_imageStates = imageStates;
+            this.ImageState = imageStates[0];
         }
 
+        public int RotationState
+        {
+            get { return m_rotationState; }
+            set
+            {
+                if (value < 0 || value > 2)
+                {
+                    throw new ArgumentException("RotationStates only between 0 and 2! ... you passed me a value of '" + value + "'.");
+                }
+                else
+                {
+                    m_rotationState = value;
+                    this.ImageState = m_imageStates[value];
+                }
+            }
+        }
 
         protected override ImageState ResetImageState()
         {
-            return new ImageState(new GameImage(Game.Content.Load<Texture2D>(string.Format(@"Barrel\barrel00{0}", GetIndexString())), 0), StateChangeType.None);
+            return m_imageStates[0];
         }
 
         public int PhysicalStaffIndex
@@ -29,10 +48,8 @@ namespace Tonnenklaps.Sprites
             get;
             set;
         }
+        
 
-        private string GetIndexString()
-        {
-            return m_VisualIndex.ToString().PadLeft(2, '0');
-        }
+      
     }
 }
