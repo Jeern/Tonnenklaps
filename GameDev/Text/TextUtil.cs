@@ -25,8 +25,8 @@ namespace GameDev.Text
         private float m_GameWidth = 0F;
         private float m_GameHeight = 0F;
 
-        public TextUtil(Game game, Vector2 scrollSpeed, SpriteFont font,
-            Color color, Vector2 offset, HorizontalAlignment ha, VerticalAlignment va) : base(game)
+        public TextUtil(Vector2 scrollSpeed, SpriteFont font,
+            Color color, Vector2 offset, HorizontalAlignment ha, VerticalAlignment va) : base(GameDevGame.Current)
         {
             m_ScrollSpeed = scrollSpeed;
             m_Font = font;
@@ -36,30 +36,30 @@ namespace GameDev.Text
             m_VAlign = va;
             m_CurrentScrollPosition.Value = Vector2.Zero;
             m_CurrentScrollPosition.Set();
-            m_GameHeight = game.GraphicsDevice.Viewport.Height;
-            m_GameWidth = game.GraphicsDevice.Viewport.Width;
+            m_GameHeight = GameDevGame.Current.GraphicsDevice.Viewport.Height;
+            m_GameWidth = GameDevGame.Current.GraphicsDevice.Viewport.Width;
         }
 
-        public TextUtil(Game game, Rectangle viewBox, Vector2 scrollSpeed, SpriteFont font, Color color, Vector2 offset, 
+        public TextUtil(Rectangle viewBox, Vector2 scrollSpeed, SpriteFont font, Color color, Vector2 offset, 
             HorizontalAlignment ha, VerticalAlignment va)
-            : this(game, scrollSpeed, font, color, offset, ha, va)
+            : this(scrollSpeed, font, color, offset, ha, va)
         {
             m_ViewBox = viewBox;
             m_Offset.X -= viewBox.X;
             m_Offset.Y -= viewBox.Y;
         }
 
-        public TextUtil(Game game, Vector2 scrollSpeed, SpriteFont font, Color color, Color shadowColor, Vector2 offset, 
+        public TextUtil(Vector2 scrollSpeed, SpriteFont font, Color color, Color shadowColor, Vector2 offset, 
             HorizontalAlignment ha, VerticalAlignment va)
-            : this(game, scrollSpeed, font, color, offset, ha, va)
+            : this(scrollSpeed, font, color, offset, ha, va)
         {
             m_ShadowColor = shadowColor;
             m_UseShadow = true;
         }
 
-        public TextUtil(Game game, Rectangle viewBox, Vector2 scrollSpeed, SpriteFont font,
+        public TextUtil(Rectangle viewBox, Vector2 scrollSpeed, SpriteFont font,
             Color color, Color shadowColor, Vector2 offset, HorizontalAlignment ha, VerticalAlignment va)
-            : this(game, viewBox, scrollSpeed, font, color, offset, ha, va)
+            : this(viewBox, scrollSpeed, font, color, offset, ha, va)
         {
             m_ShadowColor = shadowColor;
             m_UseShadow = true;

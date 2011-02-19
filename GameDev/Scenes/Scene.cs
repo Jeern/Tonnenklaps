@@ -20,7 +20,7 @@ namespace GameDev.Scenes
         public static SpriteFont m_FontMediumSmall;
         public static SpriteFont  m_FontSmall;
 
-        public Scene(Game game): base(game)
+        public Scene(): base(GameDevGame.Current)
         {
             SceneExtensions.Disable(this);
             Initialize();

@@ -13,13 +13,13 @@ namespace GameDev.Utils
     /// </summary>
     public class ClickableArea : GameComponent
     {
-        public ClickableArea(Game game)
-            : base(game)
+        public ClickableArea()
+            : base(GameDevGame.Current)
         {
         }
 
-        public ClickableArea(Game game, Rectangle rectangle)
-            : base(game)
+        public ClickableArea(Rectangle rectangle)
+            : base(GameDevGame.Current)
         {
             SetArea(rectangle);
         }

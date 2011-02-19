@@ -11,12 +11,12 @@ namespace GameDev.Sprites
     {
         protected Func<Camera> m_Camera; // = () => new Camera(null, Vector2.Zero);
 
-        public Sprite(Game game, Vector2 startPos) : this(game, startPos, () => new Camera(null, Vector2.Zero))
+        public Sprite(Vector2 startPos) : this(startPos, () => new Camera(null, Vector2.Zero))
         {
         }
 
-        public Sprite(Game game, Vector2 startPos, Func<Camera> camera)
-            : base(game)
+        public Sprite(Vector2 startPos, Func<Camera> camera)
+            : base(GameDevGame.Current)
         {
             Reset(startPos);
             m_Camera = camera;

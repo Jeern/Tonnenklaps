@@ -5,12 +5,13 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using GameDev.Input;
+using GameDev.Utils;
 
 namespace GameDev.Scenes
 {
     public class SceneScheduler : GameComponent
     {
-        public SceneScheduler(Game game) : base(game)
+        public SceneScheduler() : base(GameDevGame.Current)
         {
 
         }
