@@ -128,9 +128,9 @@ namespace GameDev.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            this.Game.CurrentSpriteBatch().Begin();
+            GameDevGame.Current.SpriteBatch.Begin();
             base.Draw(gameTime);
-            this.Game.CurrentSpriteBatch().End();
+            GameDevGame.Current.SpriteBatch.End();
         }
     }
 }

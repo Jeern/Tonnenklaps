@@ -101,8 +101,8 @@ namespace GameDev.Text
                 Viewport savedViewport = new Viewport();
                 if (m_ViewBox != Rectangle.Empty)
                 {
-                    Game.CurrentSpriteBatch().End();
-                    Game.CurrentSpriteBatch().Begin();
+                    GameDevGame.Current.SpriteBatch.End();
+                    GameDevGame.Current.SpriteBatch.Begin();
                     savedViewport = Game.GraphicsDevice.Viewport;
                     Viewport currentViewPort = Game.GraphicsDevice.Viewport;
                     currentViewPort.Width = m_ViewBox.Width;
@@ -115,13 +115,13 @@ namespace GameDev.Text
                 m_PositionTopLeft = pos + offset + m_CurrentScrollPosition; // +new Vector2(100F, 0F);
                 m_IsAreaSet = true;
 
-                Game.CurrentSpriteBatch().DrawString(font, texts[index], m_PositionTopLeft, color, 0F, Vector2.Zero,
+                GameDevGame.Current.SpriteBatch.DrawString(font, texts[index], m_PositionTopLeft, color, 0F, Vector2.Zero,
                     Vector2.One, SpriteEffects.None, 0F);
 
                 if (m_ViewBox != Rectangle.Empty)
                 {
-                    Game.CurrentSpriteBatch().End();
-                    Game.CurrentSpriteBatch().Begin();
+                    GameDevGame.Current.SpriteBatch.End();
+                    GameDevGame.Current.SpriteBatch.Begin();
                     Game.GraphicsDevice.Viewport = savedViewport;
                 }
 

@@ -55,7 +55,7 @@ namespace GameDev.Sprites
             base.Draw(gameTime);
             if (Visible)
             {
-                Game.CurrentSpriteBatch().Draw(ImageState,
+                GameDevGame.Current.SpriteBatch.Draw(ImageState,
                    Position - (m_Camera().Position * Layer), // + Middle,
                    null,
                    TheColor,

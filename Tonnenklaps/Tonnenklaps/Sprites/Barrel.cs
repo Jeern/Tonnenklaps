@@ -18,12 +18,21 @@ namespace Tonnenklaps.Sprites
         {
             m_CurrentPosition = Vector2.Zero;
             m_StartPosition = position;
+            Initialize();
         }
 
         public override void Initialize()
         {
             Reset();
             base.Initialize();
+            Initialized = true;
+        }
+
+        protected bool Initialized = false;
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
         }
 
         public virtual void Reset()
@@ -33,7 +42,7 @@ namespace Tonnenklaps.Sprites
                 m_PhysicalStaffs[i] = new PhysicalStaff();
                 m_PhysicalStaffs[i].Destroyed = false;
                 m_PhysicalStaffs[i].Color = ColorUtils.GetRandomColor();
-                m_VisualStaffs[i] = new VisualStaff(Game, Vector2.Zero);
+                m_VisualStaffs[i] = new VisualStaff(Game, Vector2.Zero, i);
                 m_VisualStaffs[i].PhysicalStaffIndex = i;
             }
             SetStartPositions();
@@ -43,12 +52,20 @@ namespace Tonnenklaps.Sprites
         {
             //Sætter positionen på hver enkelt VisualStaff.
             //TODO: Gør det her...
+            
+
+            
             //Herefter sættes den i forhold til 
+
+
             SetPosition(m_StartPosition);
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (!Initialized)
+                return;
+
             for (int i = 0; i < NumberOfStaffs; i++)
             {
                 if (i <= 5)
@@ -65,6 +82,8 @@ namespace Tonnenklaps.Sprites
 
         public override void Draw(GameTime gameTime)
         {
+            if (!Initialized)
+                return;
             //Optimeret efter at fra 0-4 er forrest, fra 5-11 er bagest.
             m_VisualStaffs[8].Draw(gameTime);
             m_VisualStaffs[7].Draw(gameTime);
