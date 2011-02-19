@@ -19,6 +19,9 @@ namespace Tonnenklaps.Sprites
 
         public override void Update(GameTime gameTime)
         {
+            if (!Initialized)
+                return;
+
             if (m_LatestRotation == TimeSpan.MaxValue)
             {
                 m_LatestRotation = gameTime.TotalGameTime;

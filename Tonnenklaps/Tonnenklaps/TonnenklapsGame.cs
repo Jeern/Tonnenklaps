@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GameDev.Utils;
 using Tonnenklaps.Controller;
+using Tonnenklaps.Sprites;
 
 namespace Tonnenklaps
 {
@@ -18,7 +19,7 @@ namespace Tonnenklaps
     /// </summary>
     public class TonnenklapsGame : GameDevGame
     {
-        SpriteBatch spriteBatch;
+        //SpriteBatch spriteBatch;
         ITonnenKlapsController m_Controller;
 
         public TonnenklapsGame()
@@ -36,9 +37,12 @@ namespace Tonnenklaps
         {
             // TODO: Add your initialization logic here
             m_Controller = new TonnenKlapsGPController();
-
+            m_Barrel = new RotatingBarrel(this, new Vector2(100, 100));
+            
             base.Initialize();
         }
+
+        private RotatingBarrel m_Barrel;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -46,8 +50,12 @@ namespace Tonnenklaps
         /// </summary>
         protected override void LoadContent()
         {
+
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //spriteBatch = new SpriteBatch(GraphicsDevice);
+            base.LoadContent();
+            Components.Add(m_Barrel);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -90,9 +98,11 @@ namespace Tonnenklaps
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            GameDevGame.Current.SpriteBatch.Begin();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            GameDevGame.Current.SpriteBatch.End();
         }
     }
 }

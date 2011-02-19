@@ -20,16 +20,16 @@ namespace GameDev.Utils
             return m_GraphicsDeviceManager;
         }
 
-        private static SpriteBatch m_CurrentSpriteBatch = null;
+        //private static SpriteBatch m_CurrentSpriteBatch = null;
 
-        public static SpriteBatch CurrentSpriteBatch(this Game game)
-        {
-            if (m_CurrentSpriteBatch == null)
-            {
-                m_CurrentSpriteBatch = new SpriteBatch(game.GraphicsDevice);
-            }
-            return m_CurrentSpriteBatch;
-        }
+        //public static SpriteBatch CurrentSpriteBatch(this Game game)
+        //{
+        //    if (m_CurrentSpriteBatch == null)
+        //    {
+        //        m_CurrentSpriteBatch = new SpriteBatch(game.GraphicsDevice);
+        //    }
+        //    return m_CurrentSpriteBatch;
+        //}
 
         public static float Height(this Game game)
         {
