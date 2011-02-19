@@ -117,13 +117,15 @@
     <Compile Include="Scenes\ChooseModeScene.cs" />
     <Compile Include="Scenes\MainScene.cs" />
     <Compile Include="Scenes\SelectPlayerScene.cs" />
-    <Compile Include="Scenes\SplashScreen.cs" />
+    <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Scenes\WinScene.cs" />
     <Compile Include="Sprites\Barrel.cs" />
     <Compile Include="Sprites\RotatingBarrel.cs" />
+    <Compile Include="Sprites\StaticBackground.cs" />
     <Compile Include="Sprites\VisualStaff.cs" />
     <Compile Include="TonnenklapsGame.cs" />
     <Compile Include="Util\ColorUtils.cs" />
+    <Compile Include="Util\GameEnvironment.cs" />
     <Compile Include="Util\PossibleColors.cs" />
   </ItemGroup>
   <ItemGroup>
