@@ -59,13 +59,18 @@ namespace GameDev.Sprites
 
         public override void Draw(GameTime gameTime)
         {
+            Draw(gameTime, TheColor);
+        }
+
+        public virtual void Draw(GameTime gameTime, Color color)
+        {
             base.Draw(gameTime);
             if (Visible)
             {
                 GameDevGame.Current.SpriteBatch.Draw(ImageState,
                    Position - (m_Camera().Position * Layer), // + Middle,
                    null,
-                   TheColor,
+                   color,
                    0F,
                    Vector2.Zero, //Formerly Middle
                    Scale,

@@ -33,6 +33,7 @@ namespace Tonnenklaps.Sprites
             set;
         }
 
+        public Club Club { get; set; }
 
 
     }
