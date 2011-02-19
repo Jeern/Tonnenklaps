@@ -18,7 +18,7 @@ namespace GameDev.Commands
 
         public static void ToggleFullScreen(GameTime time)
         {
-            Game.GraphicsDeviceManager().ToggleFullScreen();
+            GameDevGame.Current.GraphicsDeviceManager.ToggleFullScreen();
         }
     }
 }

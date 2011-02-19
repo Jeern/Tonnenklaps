@@ -9,16 +9,16 @@ namespace GameDev.Utils
 {
     public static class GameExtensions
     {
-        private static GraphicsDeviceManager m_GraphicsDeviceManager = null;
+        //private static GraphicsDeviceManager m_GraphicsDeviceManager = null;
 
-        public static GraphicsDeviceManager GraphicsDeviceManager(this Game game)
-        {
-            if (m_GraphicsDeviceManager == null)
-            {
-                m_GraphicsDeviceManager = new GraphicsDeviceManager(game);
-            }
-            return m_GraphicsDeviceManager;
-        }
+        //public static GraphicsDeviceManager GraphicsDeviceManager(this Game game)
+        //{
+        //    if (m_GraphicsDeviceManager == null)
+        //    {
+        //        m_GraphicsDeviceManager = new GraphicsDeviceManager(game);
+        //    }
+        //    return m_GraphicsDeviceManager;
+        //}
 
         //private static SpriteBatch m_CurrentSpriteBatch = null;
 

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using GameDev.Utils;
 using Tonnenklaps.Controller;
 using Tonnenklaps.Sprites;
+using GameDev.Commands;
 
 namespace Tonnenklaps
 {
@@ -25,6 +26,11 @@ namespace Tonnenklaps
         public TonnenklapsGame()
         {
             Content.RootDirectory = "Content";
+#if DEBUG
+            GameDevGame.Current.GraphicsDeviceManager.IsFullScreen = false;
+#else
+            GameDevGame.Current.GraphicsDeviceManager.IsFullScreen = true;
+#endif
         }
 
         /// <summary>
@@ -55,6 +61,7 @@ namespace Tonnenklaps
             //spriteBatch = new SpriteBatch(GraphicsDevice);
             base.LoadContent();
             Components.Add(m_Barrel);
+
 
 
             // TODO: use this.Content to load your game content here
@@ -89,6 +96,7 @@ namespace Tonnenklaps
 
             base.Update(gameTime);
         }
+
 
         /// <summary>
         /// This is called when the game should draw itself.

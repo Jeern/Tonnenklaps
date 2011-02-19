@@ -39,10 +39,10 @@ namespace Tonnenklaps.Sprites
         {
             for (int i = 0; i < NumberOfStaffs; i++)
             {
-                m_VisualStaffs[i].PhysicalStaffIndex--;
-                if (m_VisualStaffs[i].PhysicalStaffIndex < 0)
+                m_VisualStaffs[i].PhysicalStaffIndex++;
+                if (m_VisualStaffs[i].PhysicalStaffIndex > 11)
                 {
-                    m_VisualStaffs[i].PhysicalStaffIndex += NumberOfStaffs;
+                    m_VisualStaffs[i].PhysicalStaffIndex -= NumberOfStaffs;
                 }
             }
         }
