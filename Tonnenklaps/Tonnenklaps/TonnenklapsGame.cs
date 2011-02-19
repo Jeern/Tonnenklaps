@@ -30,6 +30,10 @@ namespace Tonnenklaps
         public TonnenklapsGame()
         {
             Content.RootDirectory = "Content";
+            
+            GameDevGame.Current.GraphicsDeviceManager.PreferredBackBufferHeight = 600;
+            GameDevGame.Current.GraphicsDeviceManager.PreferredBackBufferWidth = 800;
+
 #if DEBUG
             GameDevGame.Current.GraphicsDeviceManager.IsFullScreen = false;
 #else
@@ -74,7 +78,7 @@ namespace Tonnenklaps
             m_Scheduler = new SceneScheduler();
             m_PlayingScene = new PlayingScene();
             m_ChooseModeScene = new ChooseModeScene(@"Backgrounds\ChooseMode");
-            m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\SelectPlayers");
+            m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\JoinPlayers");
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
             m_WinScene = new WinScene(@"Backgrounds\Win");
 

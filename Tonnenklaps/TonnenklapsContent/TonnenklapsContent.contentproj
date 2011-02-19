@@ -223,15 +223,16 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Backgrounds\ChooseMode.png">
-      <Name>ChooseMode</Name>
+    <Compile Include="Backgrounds\JoinPlayers.png">
+      <Name>JoinPlayers</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Backgrounds\SelectPlayers.png">
-      <Name>SelectPlayers</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backgrounds\ChooseMode.png">
+      <Name>ChooseMode</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
