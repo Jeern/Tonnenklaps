@@ -14,6 +14,7 @@ using Tonnenklaps.Sprites;
 using GameDev.Commands;
 using GameDev.Scenes;
 using Tonnenklaps.Scenes;
+using GameDev.Input;
 
 namespace Tonnenklaps
 {
@@ -76,14 +77,14 @@ namespace Tonnenklaps
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
             m_WinScene = new WinScene(@"Backgrounds\Win");
 
-            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => true ));
+            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => m_SplashScreen.TimesUp(gt) || 
+                GamepadExtended.Current(PlayerIndex.One).WasSingleClick(Buttons.A)));
             m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => false));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_MainScene, gt => true));
             m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_ChooseModeScene, gt => false));
             m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_WinScene, gt => false));
             m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => false));
-
 
             Components.Add(m_WinScene);
             Components.Add(m_SplashScreen);
