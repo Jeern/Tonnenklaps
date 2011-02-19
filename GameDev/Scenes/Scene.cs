@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GameDev.Utils;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace GameDev.Scenes
 {
@@ -142,6 +143,7 @@ namespace GameDev.Scenes
             {
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(SceneTune);
+                MediaPlayer.Volume = 1f;
             }
         }
     }
