@@ -35,6 +35,24 @@ namespace Tonnenklaps.Sprites
 
         public Club Club { get; set; }
 
+        private int m_Point;
+
+        public int Point
+        {
+            get 
+            { 
+                return m_Point; 
+            }
+            set 
+            {
+                m_Point = value;
+                if (m_Point < 0)
+                {
+                    m_Point = 0;
+                }
+            }
+        }
+
 
     }
 }
