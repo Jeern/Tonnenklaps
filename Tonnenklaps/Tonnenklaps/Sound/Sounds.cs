@@ -149,9 +149,73 @@ namespace Tonnenklaps.Sound
 
         #endregion
 
+        #region Tønderamt
+
+        private static List<SoundEffectInstance> m_ToendeRamt = new List<SoundEffectInstance>();
+
+        private static List<SoundEffectInstance> ToendeRamt
+        {
+            get
+            {
+                if (m_ToendeRamt.Count == 0)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        SoundEffect effect = GameDevGame.Current.Content.Load<SoundEffect>(string.Format(@"Audio\TondeRamt{0}", i));
+                        m_ToendeRamt.Add(effect.CreateInstance());
+                    }
+                }
+                return m_ToendeRamt;
+            }
+        }
+        public static void PlayToendeRamt()
+        {
+            int value = r.Next(10);
+            SoundEffectInstance toendeRamt;
+
+            if (value <= 3)
+            {
+                toendeRamt = ToendeRamt[0];
+            }
+            else if(value <= 7)
+            {
+                toendeRamt = ToendeRamt[1];
+            }
+            else if (value <= 8)
+            {
+                toendeRamt = ToendeRamt[2];
+            }
+            else 
+            {
+                toendeRamt = ToendeRamt[3];
+            }
+            toendeRamt.Play();
+        }
+
+        #endregion
+
+        #region Win
+
+        private static SoundEffectInstance m_Win;
+        private static SoundEffectInstance Win
+        {
+            get
+            {
+                if (m_Win == null)
+                {
+                    SoundEffect effect = GameDevGame.Current.Content.Load<SoundEffect>(@"Audio\Win");
+                    m_Win = effect.CreateInstance();
+                }
+                return m_Win;
+            }
+        }
+        public static void PlayWin()
+        {
+            Win.Play();
+        }
 
 
-
+        #endregion
 
 
     }
