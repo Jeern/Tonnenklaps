@@ -428,6 +428,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barrel\Glowing\Barrel_00_00_border.png">
+      <Name>Barrel_00_00_border</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrel\Glowing\Barrel_00_01_border.png">
+      <Name>Barrel_00_01_border</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrel\Glowing\Barrel_00_02_border.png">
+      <Name>Barrel_00_02_border</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Audio\Barn1.wav">
       <Name>Barn1</Name>
       <Importer>WavImporter</Importer>

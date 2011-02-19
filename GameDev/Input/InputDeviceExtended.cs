@@ -17,7 +17,7 @@ namespace GameDev.Input
     public class InputDeviceExtended<S> where S : struct
     {
         private Queue<InputStateExtended<S>> m_RecordedStates = new Queue<InputStateExtended<S>>();
-
+        public S PreviousState { get; protected set; }
         public Queue<InputStateExtended<S>> RecordedStates
         {
             get { return m_RecordedStates; }
@@ -27,6 +27,7 @@ namespace GameDev.Input
 
         protected void EnqueueNewState(GameTime time, S state)
         {
+            PreviousState = CurrentState;
             if (!state.Equals(m_CurrentState))
             {
                 m_CurrentState = state;

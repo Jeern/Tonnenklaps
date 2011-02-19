@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameDev.GraphicUtils;
+using GameDev.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Tonnenklaps.Model;
@@ -18,6 +19,9 @@ namespace Tonnenklaps.Sprites
         public PhysicalStaff[] m_PhysicalStaves = new PhysicalStaff[NumberOfStaves];
         public VisualStaff[] m_VisualStaves = new VisualStaff[NumberOfStaves];
         Texture2D[] Stafftextures = new Texture2D[NumberOfStaves * NumberOfVisualRepresentationsPerStaff];
+        private Random rnd = new Random();
+
+        protected  Sprite [] m_glowImages = new Sprite[3];
 
         public Barrel(Vector2 position) : base(GameDevGame.Current)
         {
@@ -27,6 +31,7 @@ namespace Tonnenklaps.Sprites
             for (int i = 0; i < NumberOfStaves; i++)
             {
                 m_PhysicalStaves[i] = new PhysicalStaff();
+                
             }
         }
 
@@ -59,13 +64,22 @@ namespace Tonnenklaps.Sprites
                 
                 
             }
+
+
+
+            for (int i = 0; i < NumberOfVisualRepresentationsPerStaff; i++)
+            {
+                             string glowImageName = string.Format(@"Barrel\Glowing\Barrel_00_{0:00}_border", i);
+                m_glowImages[i] = new StaffGlow(this.m_StartPosition, GameDevGame.Current.Content.Load<Texture2D>(glowImageName));
+
+            }
         }
 
         public virtual void Reset()
         {
             for (int i = 0; i < NumberOfStaves; i++)
             {
-                m_PhysicalStaves[i].Destroyed = false;
+                m_PhysicalStaves[i].Destroyed = false;// rnd.Next(5) < 2;
                 m_PhysicalStaves[i].Color = ColorUtils.GetRandomColor();
                 m_VisualStaves[i].RotationState = 0;
                 m_VisualStaves[i].PhysicalStaffIndex = i;
@@ -78,13 +92,7 @@ namespace Tonnenklaps.Sprites
 
         private void SetStartPositions()
         {
-            //Sætter positionen på hver enkelt VisualStaff.
-            //TODO: Gør det her...
-            
-            //Herefter sættes den i forhold til 
-
-
-            SetPosition(m_StartPosition);
+           SetPosition(m_StartPosition);
         }
 
         public override void Update(GameTime gameTime)
@@ -130,10 +138,14 @@ namespace Tonnenklaps.Sprites
  
         public void SetPosition(Vector2 position)
         {
-            Vector2 offSet = position - m_CurrentPosition;
             foreach (VisualStaff visualStaff in m_VisualStaves)
             {
-                visualStaff.Position += offSet;
+                visualStaff.Position = position;
+            }
+
+            foreach (var mGlowImage in m_glowImages)
+            {
+                mGlowImage.Position = position;
             }
             m_CurrentPosition = position;
         }

@@ -1,0 +1,4 @@
+﻿Undgå at skulle kalde Initialize og implementere LoadContent på subklasser til Sprite
+Ændre Sprite så den *skal* have en ImageState i constructoren.
+ - muliggør at anvende en Sprite uden at subklasse
+ Hvorfor virker det ikke med IsButtonFirstDown på GamePadExtended?

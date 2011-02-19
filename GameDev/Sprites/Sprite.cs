@@ -11,6 +11,11 @@ namespace GameDev.Sprites
     {
         protected Func<Camera> m_Camera; // = () => new Camera(null, Vector2.Zero);
 
+        public Sprite(Vector2 startPos, ImageState imgState) : this()
+        {
+            ImageState = imgState;
+
+        }
 
         public Sprite() : this(Vector2.Zero)
         {
@@ -98,9 +103,7 @@ namespace GameDev.Sprites
                 return (new Vector2(Width / 3, Height / 3).Length()) * Scale;
             }
         }
-
-
-
+        
         protected float m_Scale;
         public float Scale
         {
