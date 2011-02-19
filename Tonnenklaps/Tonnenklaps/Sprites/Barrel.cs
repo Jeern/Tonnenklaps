@@ -113,6 +113,17 @@ namespace Tonnenklaps.Sprites
             m_CurrentPosition = position;
         }
 
+        public float Scale
+        {
+            set
+            {
+                foreach (VisualStaff visualStaff in m_VisualStaffs)
+                {
+                    visualStaff.Scale = value;
+                }
+            }
+        }
+
         
     }
 }
