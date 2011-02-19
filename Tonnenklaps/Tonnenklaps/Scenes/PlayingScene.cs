@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GameDev.Input;
 using GameDev.Scenes;
+using Microsoft.Xna.Framework.Input;
+using Tonnenklaps.Commands;
 using Tonnenklaps.Sprites;
 using Microsoft.Xna.Framework;
 using Tonnenklaps.Util;
@@ -10,8 +13,17 @@ using Tonnenklaps.Sound;
 
 namespace Tonnenklaps.Scenes
 {
+
+     enum PlayStates {
+         GetReady,
+        Playing,
+        Over
+        }
+
     public class PlayingScene : Scene
     {
+       
+
         private RotatingBarrel m_Barrel;
 
         private List<Vector2> CrownPositions;
@@ -67,6 +79,7 @@ namespace Tonnenklaps.Scenes
                                                            p.Crown.Visible = true;
                                                            p.Crown.Enable();
                                                        });
+
         }
 
         private void DrawCrowns(GameTime gameTime)
@@ -86,6 +99,33 @@ namespace Tonnenklaps.Scenes
         public bool GameOver()
         {
             return false;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            //foreach player
+
+            //Check whether a new button was 
+            foreach (var player in GameEnvironment.CurrentPlayers)
+            {
+                foreach (var buttonValue in (Buttons[]) Enum.GetValues(typeof(Buttons)))
+                {
+                    if (GamepadExtended.Current(player.PlayerIndex).IsNewDown(buttonValue))
+                    {
+                        m_Barrel.m_VisualStaves[0].Visible = false;
+                    }
+                }
+                
+            }
+            //for each pressed button
+            //...check whether
+            //  CASE: wrong color => MINUS POINTS
+            //  CASE: missing board in barrel => MINUS POINTS
+            //  CASE: right color => PLUS POINTS
+            
+
         }
 
 

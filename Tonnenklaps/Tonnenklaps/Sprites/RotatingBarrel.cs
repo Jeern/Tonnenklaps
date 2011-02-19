@@ -52,5 +52,15 @@ namespace Tonnenklaps.Sprites
                 }
             }
         }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+            if (!this.m_PhysicalStaves[m_VisualStaves[0].PhysicalStaffIndex].Destroyed )
+            {
+                m_glowImages[m_rotationState].Draw(gameTime);   
+            }
+            
+        }
     }
 }

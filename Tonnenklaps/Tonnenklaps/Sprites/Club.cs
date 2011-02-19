@@ -15,10 +15,7 @@ namespace Tonnenklaps.Sprites
        private ImageState m_waitingState, m_hittingState, m_missedState;
 
 
-       public Club(): this(Vector2.Zero, Color.White)
-       {
-           
-       }
+       
        public Club(Vector2 position, Color color)
        {
            this.Position = position;

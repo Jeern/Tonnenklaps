@@ -13,6 +13,7 @@ namespace GameDev.Input
         private PlayerIndex m_PlayerIndex = PlayerIndex.One;
         private GamePadDeadZone m_GamePadDeadZone;
 
+
         public GamepadExtended(PlayerIndex playerIndex) 
         {
             m_PlayerIndex = playerIndex;
@@ -63,8 +64,8 @@ namespace GameDev.Input
 
         public GamePadState GetState(GameTime currentTime)
         {
-            DequeueOldStates(currentTime);
             GamePadState state;
+            DequeueOldStates(currentTime);
             if (m_HasDeadZoneMode)
             {
                 state = GamePad.GetState(m_PlayerIndex, m_GamePadDeadZone);
@@ -74,6 +75,7 @@ namespace GameDev.Input
                 state = GamePad.GetState(m_PlayerIndex);
             }
             EnqueueNewState(currentTime, state);
+            
             return state;
         }
 
@@ -95,6 +97,14 @@ namespace GameDev.Input
                 buttonWasDown = stateExt.State.IsButtonDown(checkButton);
             }
             return false;
+        }
+
+        public bool IsNewDown(Buttons checkButton)
+        {
+            
+            return (PreviousState.IsButtonUp(checkButton) 
+                && 
+                CurrentState.IsButtonDown(checkButton));
         }
 
         public bool WasSingleClick(Buttons checkButton)
