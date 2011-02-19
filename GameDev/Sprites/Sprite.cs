@@ -18,14 +18,15 @@ namespace GameDev.Sprites
         public Sprite(Vector2 startPos, Func<Camera> camera)
             : base(GameDevGame.Current)
         {
-            Reset(startPos);
+            this.m_Position = startPos;
             m_Camera = camera;
             Layer = 1f;
+            this.m_Scale = 1f;
         }
 
         public virtual void Reset(Vector2 startPos)
         {
-            Scale = 1F;
+            Scale = 1f;
             if (ImageState == null)
             {
                 ImageState = ResetImageState();

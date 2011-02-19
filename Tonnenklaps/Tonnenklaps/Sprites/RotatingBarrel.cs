@@ -9,8 +9,9 @@ namespace Tonnenklaps.Sprites
     public class RotatingBarrel : Barrel
     {
         private const int RotateMilliseconds = 500; //Number of milliseconds between each barrel rotation.
-
-        public RotatingBarrel(Vector2 position) : base(position)
+        private int m_rotationState = 0;
+        public RotatingBarrel(Vector2 position)
+            : base(position)
         {
 
         }
@@ -31,18 +32,26 @@ namespace Tonnenklaps.Sprites
                 m_LatestRotation = gameTime.TotalGameTime;
                 Rotate();
             }
-                            
+
             base.Update(gameTime);
         }
 
         private void Rotate()
         {
-            for (int i = 0; i < NumberOfStaffs; i++)
+            m_rotationState = ++m_rotationState % 3;
+
+
+            for (int i = 0; i < NumberOfStaves; i++)
             {
-                m_VisualStaffs[i].PhysicalStaffIndex++;
-                if (m_VisualStaffs[i].PhysicalStaffIndex > 11)
+                m_VisualStaves[i].RotationState = m_rotationState;
+                if (m_rotationState == 0)
                 {
-                    m_VisualStaffs[i].PhysicalStaffIndex -= NumberOfStaffs;
+                    m_VisualStaves[i].PhysicalStaffIndex--;
+                }
+
+                if (m_VisualStaves[i].PhysicalStaffIndex < 0)
+                {
+                    m_VisualStaves[i].PhysicalStaffIndex += NumberOfStaves;
                 }
             }
         }

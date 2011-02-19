@@ -16,6 +16,7 @@ namespace Tonnenklaps.Scenes
         {
             m_Barrel = new RotatingBarrel(Vector2.Zero);
             AddComponent(m_Barrel);
+            m_Barrel.Reset();
             base.LoadContent();
         }
 
