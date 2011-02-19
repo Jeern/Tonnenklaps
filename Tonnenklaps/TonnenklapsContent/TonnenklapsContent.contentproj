@@ -364,64 +364,67 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\MenuKlik.mp3">
-      <Name>MenuKlik</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
     <Compile Include="Audio\MenuTheme.mp3">
       <Name>MenuTheme</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\PointP1.mp3">
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\MenuKlik.wav">
+      <Name>MenuKlik</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\MenuKlikDyb.wav">
+      <Name>MenuKlikDyb</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\PointP1.wav">
       <Name>PointP1</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\PointP2.mp3">
+    <Compile Include="Audio\PointP2.wav">
       <Name>PointP2</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\PointP3.mp3">
+    <Compile Include="Audio\PointP3.wav">
       <Name>PointP3</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\PointP4.mp3">
+    <Compile Include="Audio\PointP4.wav">
       <Name>PointP4</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Audio\TondeRamt0.mp3">
+    <Compile Include="Audio\TondeRamt0.wav">
       <Name>TondeRamt0</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\TondeRamt1.mp3">
+    <Compile Include="Audio\TondeRamt1.wav">
       <Name>TondeRamt1</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\TondeRamt2.mp3">
+    <Compile Include="Audio\TondeRamt2.wav">
       <Name>TondeRamt2</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="Audio\TondeRamt3.mp3">
+    <Compile Include="Audio\TondeRamt3.wav">
       <Name>TondeRamt3</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Audio\Win.mp3">
+    <Compile Include="Audio\Win.wav">
       <Name>Win</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
