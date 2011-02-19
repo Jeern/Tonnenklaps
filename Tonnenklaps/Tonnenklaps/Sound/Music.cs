@@ -12,6 +12,7 @@ namespace Tonnenklaps.Sound
     {
         private static Song m_MenuTune;
         private static Song m_GameTune;
+        private static Song m_WinTune;
 
 
         public static Song GetMenuTune()
@@ -31,6 +32,15 @@ namespace Tonnenklaps.Sound
                 m_GameTune = GameDevGame.Current.Content.Load<Song>(@"Audio\Beat");
             }
             return m_GameTune;
+        }
+
+        public static Song GetWinTune()
+        {
+            if (m_WinTune == null)
+            {
+                m_WinTune = GameDevGame.Current.Content.Load<Song>(@"Audio\Win");
+            }
+            return m_WinTune;
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GameDev.Scenes;
+using Tonnenklaps.Sound;
 
 namespace Tonnenklaps.Scenes
 {
@@ -10,6 +11,13 @@ namespace Tonnenklaps.Scenes
     {
         public WinScene(string textureFile) : base(textureFile)
         {
+        }
+
+        protected override void LoadContent()
+        {
+            SceneTune = Music.GetWinTune();
+
+            base.LoadContent();
         }
 
     }

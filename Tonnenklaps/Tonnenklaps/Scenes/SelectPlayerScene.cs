@@ -27,11 +27,6 @@ namespace Tonnenklaps.Scenes
         {
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         private const int Spacing = 190;
 
         protected override void LoadContent()
@@ -80,6 +75,10 @@ namespace Tonnenklaps.Scenes
             SetPlayer(PlayerIndex.Four, crown);
             AddComponent(crown);
             base.LoadContent();
+
+            int clubYPos = 0;
+            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(300, clubYPos += 50), p.TheColor));
+
         }
 
         private string GetText(string def, PlayerIndex playerIndex)
@@ -106,8 +105,9 @@ namespace Tonnenklaps.Scenes
             {
                 var player = new Player(Vector2.Zero);
                 player.PlayerIndex = playerIndex;
+                player.TheColor = ColorUtils.GetRandomColor(ColorUtils.GetPlayerColor(playerIndex));
                 player.Crown = crown;
-                crown.TheColor = ColorUtils.GetRandomColor(ColorUtils.GetPlayerColor(playerIndex));
+                crown.TheColor = player.TheColor;
                 GameEnvironment.CurrentPlayers.Add(player);
             }
             else
@@ -115,6 +115,8 @@ namespace Tonnenklaps.Scenes
                 crown.TheColor = new Color(255, 255, 255, 200);
             }
         }
+
+
 
         public override void Draw(GameTime gameTime)
         {
