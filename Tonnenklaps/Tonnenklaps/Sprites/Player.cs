@@ -27,6 +27,12 @@ namespace Tonnenklaps.Sprites
             set;
         }
 
+        public Crown Crown
+        {
+            get;
+            set;
+        }
+
 
 
     }
