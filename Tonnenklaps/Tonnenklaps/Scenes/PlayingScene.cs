@@ -31,6 +31,15 @@ namespace Tonnenklaps.Scenes
         {
             base.Draw(gameTime);
             DrawBarrel(gameTime);
+            //DrawCrown(gameTime);
+        }
+
+        private void DrawCrown(GameTime gameTime)
+        {
+            if (m_crown.Visible)
+            {
+                m_crown.Draw(gameTime);
+            }
         }
 
         private void DrawBarrel(GameTime gameTime)
