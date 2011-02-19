@@ -224,6 +224,48 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crown\crown0000.png">
+      <Name>crown0000</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0001.png">
+      <Name>crown0001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0002.png">
+      <Name>crown0002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0003.png">
+      <Name>crown0003</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0004.png">
+      <Name>crown0004</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0005.png">
+      <Name>crown0005</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Crown\crown0006.png">
+      <Name>crown0006</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backgrounds\ChooseMode.png">
+      <Name>ChooseMode</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Backgrounds\JoinPlayers.png">
       <Name>JoinPlayers</Name>
       <Importer>TextureImporter</Importer>

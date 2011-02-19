@@ -122,6 +122,7 @@
     <Compile Include="Scenes\StaticScene.cs" />
     <Compile Include="Scenes\WinScene.cs" />
     <Compile Include="Sprites\Barrel.cs" />
+    <Compile Include="Sprites\Crown.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\RotatingBarrel.cs" />
     <Compile Include="Sprites\StaticBackground.cs" />

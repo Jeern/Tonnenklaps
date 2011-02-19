@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using GameDev.GraphicUtils;
+using GameDev.Sprites;
+using GameDev.Utils;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace Tonnenklaps.Sprites
+{
+    public class Crown : Sprite
+    {
+        private ImageState m_rotatingImageState;
+
+
+        public Crown()
+        {
+           Initialize();
+        }
+     
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+            GameImage[] images = new GameImage[8];
+            for (int i = 0; i < 7; i++)
+            {
+                images[i] = GameDevGame.Current.Content.Load<Texture2D>(string.Format(@"Crown\crown{0:0000}", i));
+            }
+
+            m_rotatingImageState = new ImageState(images, StateChangeType.Repeating);
+            this.ImageState = m_rotatingImageState;
+
+        }
+
+        protected override ImageState ResetImageState()
+        {
+            return m_rotatingImageState;
+        }
+
+
+    }
+}

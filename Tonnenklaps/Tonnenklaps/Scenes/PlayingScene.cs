@@ -11,12 +11,19 @@ namespace Tonnenklaps.Scenes
     public class PlayingScene : Scene
     {
         private RotatingBarrel m_Barrel;
+        private Crown m_crown;
 
         protected override void LoadContent()
         {
             m_Barrel = new RotatingBarrel(Vector2.Zero);
             AddComponent(m_Barrel);
             m_Barrel.Reset();
+
+            m_crown = new Crown();
+            AddComponent(m_crown);
+     
+
+
             base.LoadContent();
         }
 
