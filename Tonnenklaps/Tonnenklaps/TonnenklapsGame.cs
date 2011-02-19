@@ -55,7 +55,7 @@ namespace Tonnenklaps
         MainScene m_MainScene;
         ChooseModeScene m_ChooseModeScene;
         SelectPlayerScene m_SelectPlayerScene;
-        SplashScreen m_SplashScreen;
+        SplashScene m_SplashScreen;
         WinScene m_WinScene;
 
         //private RotatingBarrel m_Barrel;
@@ -73,10 +73,10 @@ namespace Tonnenklaps
             m_MainScene = new MainScene();
             m_ChooseModeScene = new ChooseModeScene();
             m_SelectPlayerScene = new SelectPlayerScene();
-            m_SplashScreen = new SplashScreen();
+            m_SplashScreen = new SplashScene();
             m_WinScene = new WinScene();
 
-            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => true ));
+            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => false ));
             m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => false));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_MainScene, gt => true));
