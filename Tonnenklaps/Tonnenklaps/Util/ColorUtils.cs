@@ -56,6 +56,23 @@ namespace Tonnenklaps.Util
 
         }
 
+        public static PossibleColors GetPlayerColor(PlayerIndex index)
+        {
+            switch (index)
+            {
+                case PlayerIndex.One:
+                    return PossibleColors.Blue;
+                case PlayerIndex.Two:
+                    return PossibleColors.Green;
+                case PlayerIndex.Three:
+                    return PossibleColors.Red;
+                case PlayerIndex.Four:
+                    return PossibleColors.Yellow;
+                default:
+                    throw new ArgumentException("PlayerIndex eksisterer ikke");
+            }
+        }
+
 
     }
 }

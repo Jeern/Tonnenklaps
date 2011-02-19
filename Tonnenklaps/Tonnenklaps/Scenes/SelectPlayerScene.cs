@@ -28,41 +28,43 @@ namespace Tonnenklaps.Scenes
 
         public override void Initialize()
         {
-            GameEnvironment.CurrentPlayers = new List<Player>();
-            SetPlayer(PlayerIndex.One);
-            SetPlayer(PlayerIndex.Two);
-            SetPlayer(PlayerIndex.Three);
-            SetPlayer(PlayerIndex.Four);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            GameEnvironment.CurrentPlayers = new List<Player>();
             var crown = new Crown();
             crown.Position = new Vector2(10, 10);
             m_Crowns.Add(crown);
+            SetPlayer(PlayerIndex.One, crown);
             AddComponent(crown);
             crown = new Crown();
             crown.Position = new Vector2(100, 10);
             m_Crowns.Add(crown);
+            SetPlayer(PlayerIndex.Two, crown);
             AddComponent(crown);
             crown = new Crown();
             crown.Position = new Vector2(190, 10);
             m_Crowns.Add(crown);
+            SetPlayer(PlayerIndex.Three, crown);
             AddComponent(crown);
             crown = new Crown();
             crown.Position = new Vector2(280, 10);
             m_Crowns.Add(crown);
+            SetPlayer(PlayerIndex.Four, crown);
             AddComponent(crown);
             base.LoadContent();
         }
 
-        private void SetPlayer(PlayerIndex playerIndex)
+        private void SetPlayer(PlayerIndex playerIndex, Crown crown)
         {
             if (GamePad.GetCapabilities(playerIndex).IsConnected)
             {
                 var player = new Player(Vector2.Zero);
                 player.PlayerIndex = playerIndex;
+                player.Crown = crown;
+                crown.TheColor = ColorUtils.GetFrontColor(ColorUtils.GetPlayerColor(playerIndex));
                 GameEnvironment.CurrentPlayers.Add(player);
             }
         }
