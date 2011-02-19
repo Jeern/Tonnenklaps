@@ -13,12 +13,6 @@ namespace Tonnenklaps.Scenes
         {
         }
 
-        protected override void LoadContent()
-        {
-            SceneTune = Music.GetWinTune();
-
-            base.LoadContent();
-        }
 
     }
 }
