@@ -36,46 +36,46 @@ namespace Tonnenklaps.Scenes
 
         protected override void LoadContent()
         {
-            int textX = 75;
-            int crownX = 10;
+            int textX = 90;
+            int crownX = 15;
 
-            m_TextUtil1 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil1 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
             m_TextUtil1.SetText("P1");
             AddComponent(m_TextUtil1);
             textX += Spacing;
-            m_TextUtil2 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil2 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
             m_TextUtil2.SetText("P2");
             AddComponent(m_TextUtil2);
             textX += Spacing;
-            m_TextUtil3 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil3 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
             m_TextUtil3.SetText("P3");
             AddComponent(m_TextUtil3);
             textX += Spacing;
-            m_TextUtil4 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 105), HorizontalAlignment.Left, VerticalAlignment.Top);
+            m_TextUtil4 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
             m_TextUtil4.SetText("P4");
             AddComponent(m_TextUtil4);
 
             GameEnvironment.CurrentPlayers = new List<Player>();
             var crown = new Crown();
-            crown.Position = new Vector2(crownX, 10);
+            //crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.One, crown);
             AddComponent(crown);
             crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(crownX, 10);
+            //crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Two, crown);
             AddComponent(crown);
             crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(crownX, 10);
+            //crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Three, crown);
             AddComponent(crown);
             crownX += Spacing;
             crown = new Crown();
-            crown.Position = new Vector2(crownX, 10);
+            //crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Four, crown);
             AddComponent(crown);
