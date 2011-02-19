@@ -98,7 +98,7 @@ namespace Tonnenklaps.Scenes
 
         public bool GameOver()
         {
-            return false;
+            return true;
         }
 
         public override void Update(GameTime gameTime)
