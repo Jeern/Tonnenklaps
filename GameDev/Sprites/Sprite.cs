@@ -11,6 +11,11 @@ namespace GameDev.Sprites
     {
         protected Func<Camera> m_Camera; // = () => new Camera(null, Vector2.Zero);
 
+
+        public Sprite() : this(Vector2.Zero)
+        {
+            
+        }
         public Sprite(Vector2 startPos) : this(startPos, () => new Camera(null, Vector2.Zero))
         {
         }
@@ -38,7 +43,7 @@ namespace GameDev.Sprites
 
         public ImageState ImageState
         {
-            get; set;
+            get; set;   
         }
 
         protected abstract ImageState ResetImageState();
