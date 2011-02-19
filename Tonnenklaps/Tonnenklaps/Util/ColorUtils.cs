@@ -8,7 +8,7 @@ namespace Tonnenklaps.Util
 {
     public static class ColorUtils
     {
-        public static Color GetFrontColor(PossibleColors color)
+        public static Color GetRandomColor(PossibleColors color)
         {
             switch (color)
             {
@@ -25,23 +25,7 @@ namespace Tonnenklaps.Util
             }
         }
 
-        public static Color GetBackColor(PossibleColors color)
-        {
-            switch (color)
-            {
-                case PossibleColors.Blue:
-                    return Color.Blue;
-                case PossibleColors.Red:
-                    return Color.Red;
-                case PossibleColors.Yellow:
-                    return Color.Yellow;
-                case PossibleColors.Green:
-                    return Color.Green;
-                default:
-                    throw new ArgumentException("Cannot convert this color");
-            }
-        }
-
+   
         private static Random random = new Random();
 
         public static PossibleColors GetRandomColor()

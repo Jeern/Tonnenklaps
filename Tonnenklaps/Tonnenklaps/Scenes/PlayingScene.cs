@@ -13,18 +13,18 @@ namespace Tonnenklaps.Scenes
     public class PlayingScene : Scene
     {
         private RotatingBarrel m_Barrel;
-        private Crown m_crown;
+
         private List<Vector2> CrownPositions;
 
         protected override void LoadContent()
         {
             SceneTune = Music.GetGameTune();
 
-            m_crown = new Crown();
-            AddComponent(m_crown);
             m_Barrel = new RotatingBarrel(Vector2.Zero);
             AddComponent(m_Barrel);
             m_Barrel.Reset();
+
+            
 
 
             base.LoadContent();
@@ -34,35 +34,49 @@ namespace Tonnenklaps.Scenes
         {
             //base.Draw(gameTime);
             DrawBarrel(gameTime);
-            DrawCrowns();
+            DrawCrowns(gameTime);
+            DrawClubs(gameTime);
         }
 
-        private void DrawCrowns()
+        private void DrawClubs(GameTime gameTime)
         {
-           
-            
+            GameEnvironment.CurrentPlayers.ForEach(player => player.Club.Draw(gameTime));
         }
+
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            CrownPositions =  new List<Vector2>();
+            CrownPositions = new List<Vector2>();
 
-            CrownPositions.Add(new Vector2( 10));
-            CrownPositions.Add(new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10));
-            CrownPositions.Add( new Vector2(10, GameEnvironment.GameHeight-GameEnvironment.CurrentPlayers[0].Crown.Height - 10));
-            CrownPositions.Add(new Vector2(19));
-        }
+            CrownPositions.Add(new Vector2(10));
+            CrownPositions.Add(
+                new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10, 10));
+            CrownPositions.Add(new Vector2(10,
+                                           GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height -
+                                           10));
+            CrownPositions.Add(
+                new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10,
+                            GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height - 10));
 
-        private void DrawCrown(GameTime gameTime)
-        {
-            if (m_crown.Visible)
+
+            for (int playerCounter = 0; playerCounter < GameEnvironment.CurrentPlayers.Count; playerCounter++)
             {
-                m_crown.Draw(gameTime);
+                GameEnvironment.CurrentPlayers[playerCounter].Crown.Position = CrownPositions[playerCounter];
             }
 
-           
+            GameEnvironment.CurrentPlayers.ForEach(p =>
+                                                       {
+                                                           p.Crown.Visible = true;
+                                                           p.Crown.Enable();
+                                                       });
+        }
+
+        private void DrawCrowns(GameTime gameTime)
+        {
+            GameEnvironment.CurrentPlayers.ForEach(player => player.Crown.Draw(gameTime));
+
         }
 
         private void DrawBarrel(GameTime gameTime)

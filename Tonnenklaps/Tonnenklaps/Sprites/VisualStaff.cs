@@ -13,6 +13,7 @@ namespace Tonnenklaps.Sprites
     {
         private int m_VisualIndex, m_rotationState;
         private ImageState[] m_imageStates;
+
         public VisualStaff(Vector2 startpos, int visualIndex, ImageState[] imageStates)
             : base(startpos)
         {
@@ -48,8 +49,13 @@ namespace Tonnenklaps.Sprites
             get;
             set;
         }
-        
 
-      
+        public bool Targetable { get; set; }
+        public Color ColorWhenTargetable { get; set; }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime, Targetable ? ColorWhenTargetable : TheColor);
+        }
     }
 }

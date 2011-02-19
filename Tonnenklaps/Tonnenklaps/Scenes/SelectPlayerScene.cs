@@ -99,7 +99,7 @@ namespace Tonnenklaps.Scenes
                 var player = new Player(Vector2.Zero);
                 player.PlayerIndex = playerIndex;
                 player.Crown = crown;
-                crown.TheColor = ColorUtils.GetFrontColor(ColorUtils.GetPlayerColor(playerIndex));
+                crown.TheColor = ColorUtils.GetRandomColor(ColorUtils.GetPlayerColor(playerIndex));
                 GameEnvironment.CurrentPlayers.Add(player);
             }
         }

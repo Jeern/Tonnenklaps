@@ -28,7 +28,6 @@ namespace Tonnenklaps.Sprites
             {
                 m_PhysicalStaves[i] = new PhysicalStaff();
             }
-
         }
 
         public override void Initialize()
@@ -58,8 +57,8 @@ namespace Tonnenklaps.Sprites
 
                 m_VisualStaves[staffCounter] = new VisualStaff(this.m_StartPosition, staffCounter, imageStates);
                 
+                
             }
-
         }
 
         public virtual void Reset()
@@ -71,6 +70,9 @@ namespace Tonnenklaps.Sprites
                 m_VisualStaves[i].RotationState = 0;
                 m_VisualStaves[i].PhysicalStaffIndex = i;
             }
+
+            m_VisualStaves[0].Targetable = true;
+        
             SetStartPositions();
         }
 
@@ -78,8 +80,6 @@ namespace Tonnenklaps.Sprites
         {
             //Sætter positionen på hver enkelt VisualStaff.
             //TODO: Gør det her...
-            
-
             
             //Herefter sættes den i forhold til 
 
@@ -94,14 +94,13 @@ namespace Tonnenklaps.Sprites
 
             for (int i = 0; i < NumberOfStaves; i++)
             {
-                if (i <= 3 || i >= 11)
-                {
-                    m_VisualStaves[i].TheColor = ColorUtils.GetFrontColor(m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Color);
-                }
-                else
-                {
-                    m_VisualStaves[i].TheColor = ColorUtils.GetBackColor(m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Color);
-                }
+                Color aColor = ColorUtils.GetRandomColor(m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Color);
+
+                m_VisualStaves[i].TheColor = aColor;
+                m_VisualStaves[i].ColorWhenTargetable =  new Color(Math.Min( (byte)255, aColor.R+80),
+                    Math.Min((byte)255, aColor.G + 80),
+                    Math.Min((byte)255, aColor.B + 80));
+               
                 m_VisualStaves[i].Visible = !m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Destroyed;
             }
         }

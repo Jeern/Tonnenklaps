@@ -11,10 +11,7 @@ namespace Tonnenklaps.Sprites
         private const int RotateMilliseconds = 200; //Number of milliseconds between each barrel rotation.
         private int m_rotationState = 0;
         public RotatingBarrel(Vector2 position)
-            : base(position)
-        {
-
-        }
+            : base(position) {}
 
         private TimeSpan m_LatestRotation = TimeSpan.MaxValue;
 
@@ -55,7 +52,5 @@ namespace Tonnenklaps.Sprites
                 }
             }
         }
-
-
     }
 }
