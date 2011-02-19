@@ -74,7 +74,7 @@ namespace Tonnenklaps
             m_ChooseModeScene = new ChooseModeScene();
             m_SelectPlayerScene = new SelectPlayerScene();
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
-            m_WinScene = new WinScene();
+            m_WinScene = new WinScene(@"Backgrounds\Win");
 
             m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => true ));
             m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
