@@ -92,7 +92,7 @@ namespace GameDev.Input
                         return true;
                     }
                 }
-                buttonWasDown = stateExt.State.IsButtonUp(checkButton);
+                buttonWasDown = stateExt.State.IsButtonDown(checkButton);
             }
             return false;
         }

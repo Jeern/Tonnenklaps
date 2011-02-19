@@ -11,8 +11,25 @@ namespace Tonnenklaps.Scenes
 {
     public class SplashScene : StaticScene
     {
+        private TimeSpan m_Started = TimeSpan.MaxValue;
+
         public SplashScene(string textureFile) : base(textureFile)
         {
+        }
+
+        public const int Opstartstid = 5000; //Milliseconds
+
+        public bool TimesUp(GameTime gameTime)
+        {
+            if (m_Started == TimeSpan.MaxValue)
+            {
+                m_Started = gameTime.TotalGameTime;
+            }
+            else if (gameTime.TotalGameTime.Subtract(m_Started).TotalMilliseconds > Opstartstid)
+            {
+                return true;
+            }
+            return false;
         }
 
 
