@@ -15,6 +15,7 @@ using GameDev.Commands;
 using GameDev.Scenes;
 using Tonnenklaps.Scenes;
 using GameDev.Input;
+using Tonnenklaps.Commands;
 
 namespace Tonnenklaps
 {
@@ -53,7 +54,7 @@ namespace Tonnenklaps
 
         //Scenes
         SceneScheduler m_Scheduler;
-        PlayingScene m_MainScene;
+        PlayingScene m_PlayingScene;
         ChooseModeScene m_ChooseModeScene;
         SelectPlayerScene m_SelectPlayerScene;
         SplashScene m_SplashScreen;
@@ -71,26 +72,26 @@ namespace Tonnenklaps
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Scheduler = new SceneScheduler();
-            m_MainScene = new PlayingScene();
-            m_ChooseModeScene = new ChooseModeScene();
-            m_SelectPlayerScene = new SelectPlayerScene();
+            m_PlayingScene = new PlayingScene();
+            m_ChooseModeScene = new ChooseModeScene(@"Backgrounds\ChooseMode");
+            m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\SelectPlayers");
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
             m_WinScene = new WinScene(@"Backgrounds\Win");
 
-            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => m_SplashScreen.TimesUp(gt) || 
-                GamepadExtended.Current(PlayerIndex.One).WasSingleClick(Buttons.A)));
-            m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
-            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => false));
-            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_MainScene, gt => true));
-            m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_ChooseModeScene, gt => false));
-            m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_WinScene, gt => false));
-            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => false));
+            m_Scheduler.AddSceneChange(
+                new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => m_SplashScreen.TimesUp(gt) || Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.B)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_PlayingScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.B)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
 
             Components.Add(m_WinScene);
             Components.Add(m_SplashScreen);
             Components.Add(m_SelectPlayerScene);
             Components.Add(m_ChooseModeScene);
-            Components.Add(m_MainScene);
+            Components.Add(m_PlayingScene);
             Components.Add(m_Scheduler);
 
             //Components.Add(m_Barrel);
