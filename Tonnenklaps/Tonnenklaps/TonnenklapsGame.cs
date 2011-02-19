@@ -52,7 +52,7 @@ namespace Tonnenklaps
 
         //Scenes
         SceneScheduler m_Scheduler;
-        MainScene m_MainScene;
+        PlayingScene m_MainScene;
         ChooseModeScene m_ChooseModeScene;
         SelectPlayerScene m_SelectPlayerScene;
         SplashScene m_SplashScreen;
@@ -70,13 +70,13 @@ namespace Tonnenklaps
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Scheduler = new SceneScheduler();
-            m_MainScene = new MainScene();
+            m_MainScene = new PlayingScene();
             m_ChooseModeScene = new ChooseModeScene();
             m_SelectPlayerScene = new SelectPlayerScene();
-            m_SplashScreen = new SplashScene();
+            m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
             m_WinScene = new WinScene();
 
-            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => false ));
+            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => true ));
             m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => false));
             m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_MainScene, gt => true));

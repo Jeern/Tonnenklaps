@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Tonnenklaps.Scenes
 {
-    public class MainScene : Scene
+    public class PlayingScene : Scene
     {
         private RotatingBarrel m_Barrel;
 
