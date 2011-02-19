@@ -110,6 +110,7 @@ namespace Tonnenklaps
 
             base.LoadContent();
 
+
             // TODO: use this.Content to load your game content here
         }
 

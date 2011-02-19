@@ -238,8 +238,11 @@ namespace Tonnenklaps.Sound
         }
         public static void PlayBarn()
         {
-            int value = r.Next(1, 7);
-            Boern[value].Play();
+            int value = r.Next(0, 20);
+            if(value <= 6)
+            {
+                Boern[value].Play();
+            }
         }
 
         #endregion
