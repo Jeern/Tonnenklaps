@@ -110,8 +110,6 @@ namespace Tonnenklaps
 
             base.LoadContent();
 
-            Sounds.PlayMenuKlikDyb();
-
             // TODO: use this.Content to load your game content here
         }
 
