@@ -115,9 +115,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Controller\TonnenKlapsGPController.cs" />
     <Compile Include="Scenes\ChooseModeScene.cs" />
-    <Compile Include="Scenes\MainScene.cs" />
+    <Compile Include="Scenes\PlayingScene.cs" />
     <Compile Include="Scenes\SelectPlayerScene.cs" />
     <Compile Include="Scenes\SplashScene.cs" />
+    <Compile Include="Scenes\StaticScene.cs" />
     <Compile Include="Scenes\WinScene.cs" />
     <Compile Include="Sprites\Barrel.cs" />
     <Compile Include="Sprites\RotatingBarrel.cs" />
