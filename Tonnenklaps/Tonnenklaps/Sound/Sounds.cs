@@ -217,6 +217,32 @@ namespace Tonnenklaps.Sound
 
         #endregion
 
+        #region Barn
+
+        private static List<SoundEffectInstance> m_Boern = new List<SoundEffectInstance>();
+
+        private static List<SoundEffectInstance> Boern
+        {
+            get
+            {
+                if (m_Boern.Count == 0)
+                {
+                    for (int i = 1; i < 7; i++)
+                    {
+                        SoundEffect effect = GameDevGame.Current.Content.Load<SoundEffect>(string.Format(@"Audio\Barn{0}", i));
+                        m_Boern.Add(effect.CreateInstance());
+                    }
+                }
+                return m_Boern;
+            }
+        }
+        public static void PlayBarn()
+        {
+            int value = r.Next(1, 7);
+            Boern[value].Play();
+        }
+
+        #endregion
 
     }
 }
