@@ -84,7 +84,7 @@ namespace Tonnenklaps
             m_ChooseModeScene = new ChooseModeScene(@"Backgrounds\ChooseMode");
             m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\JoinPlayers");
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
-            m_WinScene = new WinScene(@"Backgrounds\Win");
+            m_WinScene = new WinScene(@"Backgrounds\Score");
 
             m_Scheduler.AddSceneChange(
                 new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => m_SplashScreen.TimesUp(gt) || Conditions.ButtonClickedOnAnyController(Buttons.A)));
