@@ -17,6 +17,7 @@ using Tonnenklaps.Scenes;
 using GameDev.Input;
 using Tonnenklaps.Commands;
 using Tonnenklaps.Util;
+using Tonnenklaps.Sound;
 
 namespace Tonnenklaps
 {
@@ -78,6 +79,7 @@ namespace Tonnenklaps
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
             m_Scheduler = new SceneScheduler();
+            m_Scheduler.MainTune = Music.GetMenuTune();
             m_PlayingScene = new PlayingScene();
             m_ChooseModeScene = new ChooseModeScene(@"Backgrounds\ChooseMode");
             m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\JoinPlayers");
@@ -93,7 +95,8 @@ namespace Tonnenklaps
 //            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.B)));
 //            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.B)));
             m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => m_PlayingScene.GameOver() ));
-//            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+//            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            //            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
             m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_PlayingScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
 
             Components.Add(m_WinScene);

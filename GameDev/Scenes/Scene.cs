@@ -6,19 +6,14 @@ using Microsoft.Xna.Framework;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
 using GameDev.Utils;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameDev.Scenes
 {
     public class Scene : DrawableGameComponent
     {
-         //m_FontLarge = Game.Content.Load<SpriteFont>(@"Fonts\Large");
-         //   m_FontMedium = Game.Content.Load<SpriteFont>(@"Fonts\Medium");
-         //   m_FontMediumSmall = Game.Content.Load<SpriteFont>(@"Fonts\MediumSmall");
-         //   m_FontSmall = Game.Content.Load<SpriteFont>(@"Fonts\Small");
-        public static SpriteFont m_FontLarge;
-        public static SpriteFont m_FontMedium;
-        public static SpriteFont m_FontMediumSmall;
-        public static SpriteFont  m_FontSmall;
+        public Song SceneTune { get; set; }
 
         public Scene(): base(GameDevGame.Current)
         {
@@ -132,5 +127,22 @@ namespace GameDev.Scenes
         //    base.Draw(gameTime);
         //    GameDevGame.Current.SpriteBatch.End();
         //}
+
+        internal void StopTune()
+        {
+            if (SceneTune != null)
+            {
+                MediaPlayer.Stop();
+            }
+        }
+
+        internal void StartTune()
+        {
+            if (SceneTune != null)
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(SceneTune);
+            }
+        }
     }
 }

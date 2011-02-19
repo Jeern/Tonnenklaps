@@ -6,14 +6,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using GameDev.Input;
 using GameDev.Utils;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameDev.Scenes
 {
     public class SceneScheduler : GameComponent
     {
+
         public SceneScheduler() : base(GameDevGame.Current)
         {
-
         }
 
         private Dictionary<Scene, List<SceneChange>> m_SceneChanges = new Dictionary<Scene,List<SceneChange>>();
@@ -71,14 +73,42 @@ namespace GameDev.Scenes
                         if (CurrentScene != null)
                         {
                             CurrentScene.OnExit();
+                            StopMainTune(m_NextScene);
+                            CurrentScene.StopTune();
                         }
                         CurrentScene = m_NextScene;
                         CurrentScene.StartTime = gameTime.TotalRealTime();
                         CurrentScene.Reset();
                         CurrentScene.OnEnter();
+                        CurrentScene.StartTune();
+                        StartMainTune();
                     }
                 }
             }
         }
+
+        private void StopMainTune(Scene nextScene)
+        {
+            if (IsMainTunePlaying && ((CurrentScene == null || CurrentScene.SceneTune == null) && (nextScene == null || nextScene.SceneTune != null)))
+            {
+                MediaPlayer.Stop();
+                IsMainTunePlaying = false;
+            }
+        }
+
+        public Song MainTune { get; set; }
+        public bool IsMainTunePlaying { get; set; }
+
+
+        private void StartMainTune()
+        {
+            if (!IsMainTunePlaying && (CurrentScene == null || CurrentScene.SceneTune == null))
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(MainTune);
+                IsMainTunePlaying = true;
+            }
+        }
+
     }
 }

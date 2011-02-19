@@ -121,6 +121,7 @@
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Scenes\StaticScene.cs" />
     <Compile Include="Scenes\WinScene.cs" />
+    <Compile Include="Sound\Music.cs" />
     <Compile Include="Sprites\Barrel.cs" />
     <Compile Include="Sprites\Crown.cs" />
     <Compile Include="Sprites\Player.cs" />

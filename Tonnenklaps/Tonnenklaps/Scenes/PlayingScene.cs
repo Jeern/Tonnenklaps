@@ -6,6 +6,7 @@ using GameDev.Scenes;
 using Tonnenklaps.Sprites;
 using Microsoft.Xna.Framework;
 using Tonnenklaps.Util;
+using Tonnenklaps.Sound;
 
 namespace Tonnenklaps.Scenes
 {
@@ -17,12 +18,14 @@ namespace Tonnenklaps.Scenes
 
         protected override void LoadContent()
         {
+            SceneTune = Music.GetGameTune();
 
             m_crown = new Crown();
             AddComponent(m_crown);
             m_Barrel = new RotatingBarrel(Vector2.Zero);
             AddComponent(m_Barrel);
             m_Barrel.Reset();
+
 
             base.LoadContent();
         }
