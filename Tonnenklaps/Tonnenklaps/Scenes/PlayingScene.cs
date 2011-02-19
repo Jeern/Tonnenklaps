@@ -15,12 +15,14 @@ namespace Tonnenklaps.Scenes
 
         protected override void LoadContent()
         {
+
+            m_crown = new Crown();
+            AddComponent(m_crown);
             m_Barrel = new RotatingBarrel(Vector2.Zero);
             AddComponent(m_Barrel);
             m_Barrel.Reset();
 
-            m_crown = new Crown();
-            AddComponent(m_crown);
+
      
 
 
@@ -29,9 +31,9 @@ namespace Tonnenklaps.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            //base.Draw(gameTime);
             DrawBarrel(gameTime);
-            //DrawCrown(gameTime);
+            DrawCrown(gameTime);
         }
 
         private void DrawCrown(GameTime gameTime)

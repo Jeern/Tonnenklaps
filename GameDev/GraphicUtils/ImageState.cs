@@ -52,6 +52,11 @@ namespace GameDev.GraphicUtils
             }
         }
 
+        public void SetDefaultDelay(int milliseconds)
+        {
+            this.ForEach(gi => gi.SetDelayFunc(() => milliseconds));
+        }
+
         public Sequencer ImageChanger
         {
             get;
@@ -73,7 +78,7 @@ namespace GameDev.GraphicUtils
         public void Update(GameTime time)
         {
             TimeSpan newTime = time.TotalGameTime;
-            if (m_LastChanged == TimeSpan.MinValue || m_LastChanged.Add(new TimeSpan(0, 0, 0, 0, Current.Delay)) <= newTime)
+            if (m_LastChanged == TimeSpan.MinValue || m_LastChanged.Add(new TimeSpan(0, 0, 0, 0, Current.DelayValue)) <= newTime)
             {
                 m_LastChanged = newTime;
                 ImageChanger.MoveNext();
