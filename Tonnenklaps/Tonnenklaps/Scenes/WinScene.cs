@@ -16,16 +16,17 @@ namespace Tonnenklaps.Scenes
         {
         }
 
+        private SortedList<int, Player> m_SortedList;
 
         public override void OnEnter()
         {
-            SortedList<int, Player> sortedList = new SortedList<int, Player>();
+            m_SortedList = new SortedList<int, Player>();
 
             GameEnvironment.CurrentPlayers.ForEach(p =>
             {
                 p.Crown.Visible = true;
                 p.Crown.Enable();
-                sortedList.Add(p.Point, p);
+                m_SortedList.Add(-p.Point, p); //Trick for at sortere descending
             });
 
             
@@ -40,7 +41,13 @@ namespace Tonnenklaps.Scenes
 
         private void DrawCrowns(GameTime gameTime)
         {
-            GameEnvironment.CurrentPlayers.ForEach(player => player.Crown.Draw(gameTime));
+            float y = 10;
+            foreach (var player in m_SortedList)
+            {
+                player.Value.Crown.Position = new Vector2(10, y);
+                y += 190;
+                player.Value.Crown.Draw(gameTime);
+            }
 
         }
 
