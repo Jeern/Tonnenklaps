@@ -5,6 +5,7 @@ using System.Text;
 using GameDev.Scenes;
 using Tonnenklaps.Sprites;
 using Microsoft.Xna.Framework;
+using Tonnenklaps.Util;
 
 namespace Tonnenklaps.Scenes
 {
@@ -12,6 +13,7 @@ namespace Tonnenklaps.Scenes
     {
         private RotatingBarrel m_Barrel;
         private Crown m_crown;
+        private List<Vector2> CrownPositions;
 
         protected override void LoadContent()
         {
@@ -22,10 +24,6 @@ namespace Tonnenklaps.Scenes
             AddComponent(m_Barrel);
             m_Barrel.Reset();
 
-
-     
-
-
             base.LoadContent();
         }
 
@@ -33,7 +31,25 @@ namespace Tonnenklaps.Scenes
         {
             //base.Draw(gameTime);
             DrawBarrel(gameTime);
-            DrawCrown(gameTime);
+            DrawCrowns();
+        }
+
+        private void DrawCrowns()
+        {
+           
+            
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            CrownPositions =  new List<Vector2>();
+
+            CrownPositions.Add(new Vector2( 10));
+            CrownPositions.Add(new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10));
+            CrownPositions.Add( new Vector2(10, GameEnvironment.GameHeight-GameEnvironment.CurrentPlayers[0].Crown.Height - 10));
+            CrownPositions.Add(new Vector2(19));
         }
 
         private void DrawCrown(GameTime gameTime)
@@ -42,6 +58,8 @@ namespace Tonnenklaps.Scenes
             {
                 m_crown.Draw(gameTime);
             }
+
+           
         }
 
         private void DrawBarrel(GameTime gameTime)
