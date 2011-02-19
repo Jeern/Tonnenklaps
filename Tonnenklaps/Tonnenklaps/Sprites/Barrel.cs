@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Tonnenklaps.Model;
 using Tonnenklaps.Util;
+using GameDev.Utils;
 
 namespace Tonnenklaps.Sprites
 {
@@ -14,7 +15,7 @@ namespace Tonnenklaps.Sprites
         public PhysicalStaff[] m_PhysicalStaffs = new PhysicalStaff[NumberOfStaffs];
         public VisualStaff[] m_VisualStaffs = new VisualStaff[NumberOfStaffs];
 
-        public Barrel(Game game, Vector2 position) : base(game)
+        public Barrel(Vector2 position) : base(GameDevGame.Current)
         {
             m_CurrentPosition = Vector2.Zero;
             m_StartPosition = position;
@@ -42,7 +43,7 @@ namespace Tonnenklaps.Sprites
                 m_PhysicalStaffs[i] = new PhysicalStaff();
                 m_PhysicalStaffs[i].Destroyed = false;
                 m_PhysicalStaffs[i].Color = ColorUtils.GetRandomColor();
-                m_VisualStaffs[i] = new VisualStaff(Game, Vector2.Zero, i);
+                m_VisualStaffs[i] = new VisualStaff(Vector2.Zero, i);
                 m_VisualStaffs[i].PhysicalStaffIndex = i;
             }
             SetStartPositions();

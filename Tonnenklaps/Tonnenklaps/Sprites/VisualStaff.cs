@@ -12,7 +12,7 @@ namespace Tonnenklaps.Sprites
     public class VisualStaff : Sprite
     {
         private int m_VisualIndex;
-        public VisualStaff(Game game, Vector2 startpos, int visualIndex) : base(game, startpos)
+        public VisualStaff(Vector2 startpos, int visualIndex) : base(startpos)
         {
             m_VisualIndex = visualIndex;
             ImageState = ResetImageState();

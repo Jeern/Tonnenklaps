@@ -43,7 +43,7 @@ namespace Tonnenklaps
         {
             // TODO: Add your initialization logic here
             m_Controller = new TonnenKlapsGPController();
-            m_Barrel = new RotatingBarrel(this, new Vector2(0, 0));
+            m_Barrel = new RotatingBarrel(new Vector2(0, 0));
             
             base.Initialize();
         }

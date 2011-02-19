@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using GameDev.Utils;
 
 namespace GameDev.Commands
 {
@@ -16,7 +17,7 @@ namespace GameDev.Commands
         /// <param name="commandAction">Action to be executed when conditon is true</param>
         /// <param name="game"></param>
         public Command(string name, Func<GameTime, bool> condition, 
-            Action<GameTime> commandAction, Game game) : base(game)
+            Action<GameTime> commandAction) : base(GameDevGame.Current)
         {
             m_Name = name;
             m_Condition = condition;

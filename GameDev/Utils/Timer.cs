@@ -21,8 +21,8 @@ namespace GameDev.Utils
         private float m_millisecondsLeft;
 
 
-        public Timer(Game game, int delay)
-            : base(game)
+        public Timer(int delay)
+            : base(GameDevGame.Current)
         {
             DelayInMilliseconds = delay;
             m_millisecondsLeft = DelayInMilliseconds;

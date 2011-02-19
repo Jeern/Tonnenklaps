@@ -9,11 +9,9 @@ namespace GameDev.Commands
 {
     public static class CommandActions
     {
-        public static Game Game { get; set; }
-
         public static void Exit(GameTime time)
         {
-            Game.Exit();
+            GameDevGame.Current.Exit();
         }
 
         public static void ToggleFullScreen(GameTime time)

@@ -9,8 +9,6 @@ namespace GameDev.Commands
 {
     public static class CommandConditions
     {
-        public static Game Game { get; set; }
-
         public static bool Exit(GameTime time)
         {
             return KeyboardExtended.Current.WasSingleClick(Keys.Escape);

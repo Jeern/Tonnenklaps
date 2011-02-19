@@ -10,7 +10,7 @@ namespace Tonnenklaps.Sprites
     {
         private const int RotateMilliseconds = 500; //Number of milliseconds between each barrel rotation.
 
-        public RotatingBarrel(Game game, Vector2 position) : base(game, position)
+        public RotatingBarrel(Vector2 position) : base(position)
         {
 
         }
