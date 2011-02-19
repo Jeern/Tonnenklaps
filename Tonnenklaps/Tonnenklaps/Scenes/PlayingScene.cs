@@ -70,6 +70,11 @@ namespace Tonnenklaps.Scenes
             }
         }
 
+        public bool GameOver()
+        {
+            return false;
+        }
+
 
     }
 }
