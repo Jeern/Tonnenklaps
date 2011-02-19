@@ -14,22 +14,26 @@ namespace Tonnenklaps.Sprites
     {
         private ImageState m_rotatingImageState;
 
+        private int m_imagesInQuarterTurn = 6;
 
         public Crown()
         {
            Initialize();
+            Scale = 0.4F;
+            this.TheColor = Color.Green;
         }
      
         protected override void LoadContent()
         {
-            GameImage[] images = new GameImage[7];
-            for (int i = 0; i < 7; i++)
+            GameImage[] images = new GameImage[m_imagesInQuarterTurn];
+            for (int i = 0; i < m_imagesInQuarterTurn; i++)
             {
                 images[i] = GameDevGame.Current.Content.Load<Texture2D>(string.Format(@"Crown\crown{0:0000}", i));
             }
 
             m_rotatingImageState = new ImageState(images, StateChangeType.Repeating);
             this.ImageState = m_rotatingImageState;
+            this.ImageState.SetDefaultDelay(150);
             base.LoadContent();
 
         }

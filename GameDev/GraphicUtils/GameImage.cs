@@ -24,9 +24,15 @@ namespace GameDev.GraphicUtils
             private set;
         }
 
-        public int Delay
+        public int DelayValue
         {
             get { return m_DelayMethod(); }
+        }
+
+        public void SetDelayFunc( Func<int> delayMethod)
+        {
+            m_DelayMethod = delayMethod;
+
         }
 
         public static implicit operator Texture2D(GameImage image)
