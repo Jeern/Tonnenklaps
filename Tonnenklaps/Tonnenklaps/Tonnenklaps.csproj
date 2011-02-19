@@ -122,6 +122,7 @@
     <Compile Include="Scenes\StaticScene.cs" />
     <Compile Include="Scenes\WinScene.cs" />
     <Compile Include="Sound\Music.cs" />
+    <Compile Include="Sound\Sounds.cs" />
     <Compile Include="Sprites\Barrel.cs" />
     <Compile Include="Sprites\Club.cs" />
     <Compile Include="Sprites\Crown.cs" />
