@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Tonnenklaps.Sprites;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Tonnenklaps.Util
 {
@@ -15,6 +16,11 @@ namespace Tonnenklaps.Util
         {
             get;
             set; 
+        }
+
+        public static SpriteFont FastelavnsFont
+        {
+            get; set;
         }
 
 

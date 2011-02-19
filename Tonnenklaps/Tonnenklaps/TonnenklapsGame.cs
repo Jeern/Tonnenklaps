@@ -16,6 +16,7 @@ using GameDev.Scenes;
 using Tonnenklaps.Scenes;
 using GameDev.Input;
 using Tonnenklaps.Commands;
+using Tonnenklaps.Util;
 
 namespace Tonnenklaps
 {
@@ -49,6 +50,7 @@ namespace Tonnenklaps
         /// </summary>
         protected override void Initialize()
         {
+            GameEnvironment.FastelavnsFont = Content.Load<SpriteFont>("FastelavnsFont");
             // TODO: Add your initialization logic here
             m_Controller = new TonnenKlapsGPController();
             //m_Barrel = new RotatingBarrel(new Vector2(0, 0));
