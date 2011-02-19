@@ -12,6 +12,8 @@ using GameDev.Utils;
 using Tonnenklaps.Controller;
 using Tonnenklaps.Sprites;
 using GameDev.Commands;
+using GameDev.Scenes;
+using Tonnenklaps.Scenes;
 
 namespace Tonnenklaps
 {
@@ -43,12 +45,20 @@ namespace Tonnenklaps
         {
             // TODO: Add your initialization logic here
             m_Controller = new TonnenKlapsGPController();
-            m_Barrel = new RotatingBarrel(new Vector2(0, 0));
+            //m_Barrel = new RotatingBarrel(new Vector2(0, 0));
             
             base.Initialize();
         }
 
-        private RotatingBarrel m_Barrel;
+        //Scenes
+        SceneScheduler m_Scheduler;
+        MainScene m_MainScene;
+        ChooseModeScene m_ChooseModeScene;
+        SelectPlayerScene m_SelectPlayerScene;
+        SplashScreen m_SplashScreen;
+        WinScene m_WinScene;
+
+        //private RotatingBarrel m_Barrel;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -59,9 +69,32 @@ namespace Tonnenklaps
 
             // Create a new SpriteBatch, which can be used to draw textures.
             //spriteBatch = new SpriteBatch(GraphicsDevice);
-            base.LoadContent();
-            Components.Add(m_Barrel);
+            m_Scheduler = new SceneScheduler();
+            m_MainScene = new MainScene();
+            m_ChooseModeScene = new ChooseModeScene();
+            m_SelectPlayerScene = new SelectPlayerScene();
+            m_SplashScreen = new SplashScreen();
+            m_WinScene = new WinScene();
 
+            m_Scheduler.AddSceneChange(new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => true ));
+            m_Scheduler.AddSceneChange(new SceneChange(m_SelectPlayerScene, m_ChooseModeScene, gt => true));
+            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_SelectPlayerScene, gt => false));
+            m_Scheduler.AddSceneChange(new SceneChange(m_ChooseModeScene, m_MainScene, gt => true));
+            m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_ChooseModeScene, gt => false));
+            m_Scheduler.AddSceneChange(new SceneChange(m_MainScene, m_WinScene, gt => false));
+            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => false));
+
+
+            Components.Add(m_WinScene);
+            Components.Add(m_SplashScreen);
+            Components.Add(m_SelectPlayerScene);
+            Components.Add(m_ChooseModeScene);
+            Components.Add(m_MainScene);
+            Components.Add(m_Scheduler);
+
+            //Components.Add(m_Barrel);
+
+            base.LoadContent();
 
 
             // TODO: use this.Content to load your game content here
