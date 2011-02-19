@@ -32,6 +32,11 @@ namespace Tonnenklaps.Scenes
             return false;
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
+
 
     }
 }

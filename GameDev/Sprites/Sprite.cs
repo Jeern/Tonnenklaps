@@ -21,7 +21,8 @@ namespace GameDev.Sprites
             this.m_Position = startPos;
             m_Camera = camera;
             Layer = 1f;
-            this.m_Scale = 1f;
+            this.Scale = 1f;
+            TheColor = Color.White;
         }
 
         public virtual void Reset(Vector2 startPos)
