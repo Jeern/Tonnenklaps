@@ -82,6 +82,16 @@ namespace Tonnenklaps.Scenes
             base.LoadContent();
         }
 
+        public override void OnEnter()
+        {
+            int crownX = 10;
+            foreach (Crown crown in m_Crowns)
+            {
+                crown.Position = new Vector2(crownX, 10);
+                crownX += Spacing;
+            }
+        }
+
         private void SetPlayer(PlayerIndex playerIndex, Crown crown)
         {
             if (GamePad.GetCapabilities(playerIndex).IsConnected)
