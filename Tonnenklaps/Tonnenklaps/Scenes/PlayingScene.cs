@@ -20,12 +20,9 @@ namespace Tonnenklaps.Scenes
         {
             SceneTune = Music.GetGameTune();
 
-            m_Barrel = new RotatingBarrel(Vector2.Zero);
+            m_Barrel = new RotatingBarrel(new Vector2(30,50));
             AddComponent(m_Barrel);
             m_Barrel.Reset();
-
-            
-
 
             base.LoadContent();
         }
@@ -40,7 +37,7 @@ namespace Tonnenklaps.Scenes
 
         private void DrawClubs(GameTime gameTime)
         {
-            GameEnvironment.CurrentPlayers.ForEach(player => player.Club.Draw(gameTime));
+            GameEnvironment.CurrentPlayers.ForEach(player => player.Club.Draw(gameTime, player.TheColor));
         }
 
 
@@ -54,8 +51,7 @@ namespace Tonnenklaps.Scenes
             CrownPositions.Add(
                 new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10, 10));
             CrownPositions.Add(new Vector2(10,
-                                           GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height -
-                                           10));
+                                           GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height -10));
             CrownPositions.Add(
                 new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10,
                             GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height - 10));
@@ -71,6 +67,8 @@ namespace Tonnenklaps.Scenes
                                                            p.Crown.Visible = true;
                                                            p.Crown.Enable();
                                                        });
+
+            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club());
         }
 
         private void DrawCrowns(GameTime gameTime)
