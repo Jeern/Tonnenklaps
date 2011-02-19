@@ -101,10 +101,10 @@ namespace GameDev.Scenes
 
         protected override void LoadContent()
         {
-            m_FontLarge = Game.Content.Load<SpriteFont>(@"Fonts\Large");
-            m_FontMedium = Game.Content.Load<SpriteFont>(@"Fonts\Medium");
-            m_FontMediumSmall = Game.Content.Load<SpriteFont>(@"Fonts\MediumSmall");
-            m_FontSmall = Game.Content.Load<SpriteFont>(@"Fonts\Small");
+            //m_FontLarge = Game.Content.Load<SpriteFont>(@"Fonts\Large");
+            //m_FontMedium = Game.Content.Load<SpriteFont>(@"Fonts\Medium");
+            //m_FontMediumSmall = Game.Content.Load<SpriteFont>(@"Fonts\MediumSmall");
+            //m_FontSmall = Game.Content.Load<SpriteFont>(@"Fonts\Small");
             base.LoadContent();
         }
 
@@ -126,11 +126,11 @@ namespace GameDev.Scenes
             set;
         }
 
-        public override void Draw(GameTime gameTime)
-        {
-            GameDevGame.Current.SpriteBatch.Begin();
-            base.Draw(gameTime);
-            GameDevGame.Current.SpriteBatch.End();
-        }
+        //public override void Draw(GameTime gameTime)
+        //{
+        //    GameDevGame.Current.SpriteBatch.Begin();
+        //    base.Draw(gameTime);
+        //    GameDevGame.Current.SpriteBatch.End();
+        //}
     }
 }
