@@ -12,6 +12,8 @@ namespace Tonnenklaps.Sound
     {
         private static Random r = new Random();
 
+        #region Point sounds
+
         private static SoundEffectInstance m_PointP1;
         private static SoundEffectInstance PointP1
         {
@@ -104,6 +106,52 @@ namespace Tonnenklaps.Sound
                     throw new ArgumentException("No such index");
             }
         }
+
+        #endregion
+
+        #region MenuKlik sounds
+
+        private static SoundEffectInstance m_MenuKlik;
+        private static SoundEffectInstance MenuKlik
+        {
+            get
+            {
+                if (m_MenuKlik == null)
+                {
+                    SoundEffect effect = GameDevGame.Current.Content.Load<SoundEffect>(@"Audio\MenuKlik");
+                    m_MenuKlik = effect.CreateInstance();
+                }
+                return m_MenuKlik;
+            }
+        }
+        public static void PlayMenuKlik()
+        {
+            MenuKlik.Play();
+        }
+
+        private static SoundEffectInstance m_MenuKlikDyb;
+        private static SoundEffectInstance MenuKlikDyb
+        {
+            get
+            {
+                if (m_MenuKlikDyb == null)
+                {
+                    SoundEffect effect = GameDevGame.Current.Content.Load<SoundEffect>(@"Audio\MenuKlikDyb");
+                    m_MenuKlikDyb = effect.CreateInstance();
+                }
+                return m_MenuKlikDyb;
+            }
+        }
+        public static void PlayMenuKlikDyb()
+        {
+            MenuKlikDyb.Play();
+        }
+
+        #endregion
+
+
+
+
 
 
     }
