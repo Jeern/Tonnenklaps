@@ -5,6 +5,7 @@ using System.Text;
 using GameDev.GraphicUtils;
 using GameDev.Sprites;
 using GameDev.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Tonnenklaps.Sprites
@@ -14,8 +15,14 @@ namespace Tonnenklaps.Sprites
        private ImageState m_waitingState, m_hittingState, m_missedState;
 
 
-       public Club()
+       public Club(): this(Vector2.Zero, Color.White)
        {
+           
+       }
+       public Club(Vector2 position, Color color)
+       {
+           this.Position = position;
+           this.TheColor = color;
            Initialize();
        }
 

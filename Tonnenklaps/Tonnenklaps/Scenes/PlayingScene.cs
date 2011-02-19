@@ -67,8 +67,8 @@ namespace Tonnenklaps.Scenes
                                                            p.Crown.Visible = true;
                                                            p.Crown.Enable();
                                                        });
-
-            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club());
+            int clubYPos = 0;
+            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(350,clubYPos++ * 30), p.TheColor));
         }
 
         private void DrawCrowns(GameTime gameTime)
