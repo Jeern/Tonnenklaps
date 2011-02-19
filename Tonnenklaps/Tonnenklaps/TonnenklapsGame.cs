@@ -98,7 +98,7 @@ namespace Tonnenklaps
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            GameDevGame.Current.SpriteBatch.Begin();
+            GameDevGame.Current.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

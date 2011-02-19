@@ -15,6 +15,7 @@ namespace Tonnenklaps.Sprites
         public VisualStaff(Game game, Vector2 startpos, int visualIndex) : base(game, startpos)
         {
             m_VisualIndex = visualIndex;
+            ImageState = ResetImageState();
         }
 
 
