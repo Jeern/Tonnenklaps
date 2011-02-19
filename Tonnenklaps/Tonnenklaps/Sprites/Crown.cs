@@ -22,8 +22,7 @@ namespace Tonnenklaps.Sprites
      
         protected override void LoadContent()
         {
-            base.LoadContent();
-            GameImage[] images = new GameImage[8];
+            GameImage[] images = new GameImage[7];
             for (int i = 0; i < 7; i++)
             {
                 images[i] = GameDevGame.Current.Content.Load<Texture2D>(string.Format(@"Crown\crown{0:0000}", i));
@@ -31,6 +30,7 @@ namespace Tonnenklaps.Sprites
 
             m_rotatingImageState = new ImageState(images, StateChangeType.Repeating);
             this.ImageState = m_rotatingImageState;
+            base.LoadContent();
 
         }
 
