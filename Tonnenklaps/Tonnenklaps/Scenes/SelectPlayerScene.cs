@@ -98,7 +98,12 @@ namespace Tonnenklaps.Scenes
             }
 
             int clubYPos = 10;
-            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(250, clubYPos += 100), Color.SandyBrown));// p.TheColor));
+            GameEnvironment.CurrentPlayers.ForEach(p => { 
+                if(p.Club == null)
+                {
+                    p.Club = new Club(new Vector2(250, clubYPos += 100), Color.SandyBrown);
+                }
+            });// p.TheColor));
 
         }
 
