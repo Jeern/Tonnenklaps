@@ -116,6 +116,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Controller\TonnenKlapsGPController.cs" />
     <Compile Include="Scenes\ChooseModeScene.cs" />
+    <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\PlayingScene.cs" />
     <Compile Include="Scenes\SelectPlayerScene.cs" />
     <Compile Include="Scenes\SplashScene.cs" />
