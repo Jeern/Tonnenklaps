@@ -88,7 +88,7 @@ namespace Tonnenklaps.Scenes
             if (GamePad.GetCapabilities(playerIndex).IsConnected)
                 return def;
 
-            return "??";
+            return "connect player";
         }
 
         public override void OnEnter()
@@ -114,7 +114,8 @@ namespace Tonnenklaps.Scenes
             }
             else
             {
-                crown.TheColor = new Color(255, 255, 255, 200);
+                crown.TheColor = new Color(50, 50, 50, 10);
+                crown.StopRotation();
             }
         }
 
