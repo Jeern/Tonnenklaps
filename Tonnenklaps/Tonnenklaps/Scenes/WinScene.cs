@@ -13,6 +13,11 @@ namespace Tonnenklaps.Scenes
 {
     public class WinScene : StaticScene
     {
+
+        private ButtonA m_ButtonA;
+        private ButtonY m_ButtonY;
+
+
         public WinScene(string textureFile) : base(textureFile)
         {
         }
@@ -38,6 +43,20 @@ namespace Tonnenklaps.Scenes
         {
             base.Draw(gameTime);
             DrawCrowns(gameTime);
+            DrawButtons(gameTime);
+        }
+
+        private void DrawButtons(GameTime gameTime)
+        {
+            if (m_ButtonA.Visible)
+            {
+                m_ButtonA.Draw(gameTime);
+            }
+            if (m_ButtonY.Visible)
+            {
+                m_ButtonY.Draw(gameTime);
+            }
+
         }
 
         private void DrawCrowns(GameTime gameTime)
@@ -54,6 +73,18 @@ namespace Tonnenklaps.Scenes
             }
 
         }
+
+        protected override void LoadContent()
+        {
+            m_ButtonA = new ButtonA(new Vector2(720, 450), "To Play again");
+            AddComponent(m_ButtonA);
+            m_ButtonY = new ButtonY(new Vector2(720, 525), "Go To Credits");
+            AddComponent(m_ButtonY);
+
+            base.LoadContent();
+        }
+
+        
 
 
 
