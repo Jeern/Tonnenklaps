@@ -67,6 +67,7 @@ namespace Tonnenklaps
         SelectPlayerScene m_SelectPlayerScene;
         SplashScene m_SplashScreen;
         WinScene m_WinScene;
+        CreditsScene m_CreditsScene;
 
         //private RotatingBarrel m_Barrel;
 
@@ -86,6 +87,7 @@ namespace Tonnenklaps
             m_SelectPlayerScene = new SelectPlayerScene(@"Backgrounds\JoinPlayers");
             m_SplashScreen = new SplashScene(@"Backgrounds\Splash");
             m_WinScene = new WinScene(@"Backgrounds\Score");
+            m_CreditsScene = new CreditsScene(@"Backgrounds\Credits");
 
             m_Scheduler.AddSceneChange(
                 new SceneChange(m_SplashScreen, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
@@ -99,7 +101,10 @@ namespace Tonnenklaps
 //            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_WinScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
             //            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_ChooseModeScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
             m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_CreditsScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.Y)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_CreditsScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
 
+            Components.Add(m_CreditsScene);
             Components.Add(m_WinScene);
             Components.Add(m_SplashScreen);
             Components.Add(m_SelectPlayerScene);
