@@ -315,7 +315,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FastelavnsFont.spritefont">
+    <Compile Include="Fonts\FastelavnsFont.spritefont">
       <Name>FastelavnsFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
@@ -476,6 +476,13 @@
       <Name>Barn7</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fonts\FastelavnsFontBig.spritefont">
+      <Name>FastelavnsFontBig</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>

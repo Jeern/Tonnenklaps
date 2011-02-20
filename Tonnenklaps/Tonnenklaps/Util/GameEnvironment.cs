@@ -24,6 +24,6 @@ namespace Tonnenklaps.Util
         }
 
 
-
+        public static SpriteFont FastelavnsFontBig { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using GameDev.Input;
 using GameDev.Scenes;
+using GameDev.Text;
+using GameDev.Utils;
 using Microsoft.Xna.Framework.Input;
 using Tonnenklaps.Commands;
 using Tonnenklaps.Sprites;
@@ -20,9 +22,14 @@ namespace Tonnenklaps.Scenes
         Over
         }
 
+    
+
     public class PlayingScene : Scene
     {
-       
+        
+
+        public const int PointsForHit = 5;
+        public const int PointsForMiss = -1;
 
         private RotatingBarrel m_Barrel;
 
@@ -82,9 +89,18 @@ namespace Tonnenklaps.Scenes
 
         }
 
+        private Vector2 PointVectorOffset = new Vector2(45, 35);
+
         private void DrawCrowns(GameTime gameTime)
         {
-            GameEnvironment.CurrentPlayers.ForEach(player => player.Crown.Draw(gameTime));
+            foreach (var currentPlayer in GameEnvironment.CurrentPlayers)
+            {
+                currentPlayer.Crown.Draw(gameTime);
+                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, currentPlayer.Points.ToString() , currentPlayer.Crown.Position + PointVectorOffset + Vector2.One * 4 , Color.Black);
+                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, currentPlayer.Points.ToString(), currentPlayer.Crown.Position + PointVectorOffset, Color.White);
+
+            }
+
 
         }
 
@@ -114,20 +130,40 @@ namespace Tonnenklaps.Scenes
                 {
                     if (GamepadExtended.Current(player.PlayerIndex).IsNewDown(buttonValue))
                     {
-                        m_Barrel.m_VisualStaves[0].Visible = false;
+
+                        if (m_Barrel.CheckHit(ButtonToColor(buttonValue)))
+                        {
+                            player.Points += PointsForHit;
+                        }
+                        else
+                        {
+                            player.Points += PointsForMiss;
+                        }
                     }
                 }
-                
             }
-            //for each pressed button
-            //...check whether
-            //  CASE: wrong color => MINUS POINTS
-            //  CASE: missing board in barrel => MINUS POINTS
-            //  CASE: right color => PLUS POINTS
-            
-
         }
 
+        PossibleColors ButtonToColor(Buttons button)
+        {
+            switch (button)
+            {
+                case Buttons.A:
+                    return PossibleColors.Green;
+                    
+                case Buttons.B:
+                    return PossibleColors.Red;
+
+                case Buttons.X:
+                    return PossibleColors.Blue;
+
+                case Buttons.Y:
+                    return PossibleColors.Yellow;
+
+                default:
+                    throw new ArgumentOutOfRangeException("button");
+            }
+        }
 
     }
 }

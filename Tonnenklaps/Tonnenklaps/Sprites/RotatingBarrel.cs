@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Tonnenklaps.Model;
+using Tonnenklaps.Util;
 
 namespace Tonnenklaps.Sprites
 {
@@ -59,6 +61,25 @@ namespace Tonnenklaps.Sprites
             if (!this.m_PhysicalStaves[m_VisualStaves[0].PhysicalStaffIndex].Destroyed )
             {
                 m_glowImages[m_rotationState].Draw(gameTime);   
+            }
+        }
+
+        public bool CheckHit(PossibleColors color)
+        {
+            PhysicalStaff staffToHit = m_PhysicalStaves[m_VisualStaves[0].PhysicalStaffIndex];
+            if (staffToHit.Destroyed)
+            {
+                return false;
+            }
+            else
+            {
+                if (staffToHit.Color == color)
+                {
+                    staffToHit.Destroyed = true;
+                    return true;    
+
+                }
+                return false;
             }
             
         }
