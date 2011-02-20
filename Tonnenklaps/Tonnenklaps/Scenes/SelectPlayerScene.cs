@@ -179,6 +179,15 @@ namespace Tonnenklaps.Scenes
                 CheckAndSetup();
             }
             m_Crowns.ForEach(c => c.Update(gameTime));
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Three).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Four).Buttons.Back == ButtonState.Pressed)
+            {
+                GameDevGame.Current.Exit();
+            }
+
         }
 
 
