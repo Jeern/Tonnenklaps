@@ -141,6 +141,7 @@
     <Compile Include="TonnenklapsGame.cs" />
     <Compile Include="Util\ColorUtils.cs" />
     <Compile Include="Util\GameEnvironment.cs" />
+    <Compile Include="Util\PlayerCompare.cs" />
     <Compile Include="Util\PossibleColors.cs" />
   </ItemGroup>
   <ItemGroup>
