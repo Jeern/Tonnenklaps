@@ -142,8 +142,13 @@ namespace Tonnenklaps
             m_Controller.GetState(PlayerIndex.Four, gameTime);
 
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Three).Buttons.Back == ButtonState.Pressed ||
+                GamePad.GetState(PlayerIndex.Four).Buttons.Back == ButtonState.Pressed)
+            {
+                Exit();
+            }
 
             // TODO: Add your update logic here
 
