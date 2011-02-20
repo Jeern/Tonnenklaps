@@ -104,6 +104,10 @@ namespace Tonnenklaps
             m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_CreditsScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.Y)));
             m_Scheduler.AddSceneChange(new SceneChange(m_CreditsScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.A)));
 
+            m_Scheduler.AddSceneChange(new SceneChange(m_PlayingScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.Back)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_WinScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.Back)));
+            m_Scheduler.AddSceneChange(new SceneChange(m_CreditsScene, m_SelectPlayerScene, gt => Conditions.ButtonClickedOnAnyController(Buttons.Back)));
+
             Components.Add(m_CreditsScene);
             Components.Add(m_WinScene);
             Components.Add(m_SplashScreen);
@@ -141,11 +145,14 @@ namespace Tonnenklaps
             m_Controller.GetState(PlayerIndex.Three, gameTime);
             m_Controller.GetState(PlayerIndex.Four, gameTime);
 
+            KeyboardExtended.Current.GetState(gameTime);
+
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed ||
-                GamePad.GetState(PlayerIndex.Three).Buttons.Back == ButtonState.Pressed ||
-                GamePad.GetState(PlayerIndex.Four).Buttons.Back == ButtonState.Pressed)
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+            //    GamePad.GetState(PlayerIndex.Two).Buttons.Back == ButtonState.Pressed ||
+            //    GamePad.GetState(PlayerIndex.Three).Buttons.Back == ButtonState.Pressed ||
+            //    GamePad.GetState(PlayerIndex.Four).Buttons.Back == ButtonState.Pressed)
+            if(KeyboardExtended.Current.GetState(gameTime).IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
