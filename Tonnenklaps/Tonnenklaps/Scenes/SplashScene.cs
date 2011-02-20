@@ -13,8 +13,18 @@ namespace Tonnenklaps.Scenes
     {
         private TimeSpan m_Started = TimeSpan.MaxValue;
 
+        private ButtonA m_ButtonA;
+
         public SplashScene(string textureFile) : base(textureFile)
         {
+        }
+
+
+        protected override void LoadContent()
+        {
+            m_ButtonA = new ButtonA(Vector2.Zero, "Diller");
+            AddComponent(m_ButtonA);
+            base.LoadContent();
         }
 
         public const int Opstartstid = 5000; //Milliseconds
@@ -35,6 +45,15 @@ namespace Tonnenklaps.Scenes
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            DrawButton(gameTime);
+        }
+
+        private void DrawButton(GameTime gameTime)
+        {
+            if (m_ButtonA.Visible)
+            {
+                m_ButtonA.Draw(gameTime);
+            }
         }
 
 
