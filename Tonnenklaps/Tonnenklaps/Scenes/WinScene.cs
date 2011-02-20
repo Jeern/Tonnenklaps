@@ -22,10 +22,11 @@ namespace Tonnenklaps.Scenes
         {
         }
 
-        private List<Player> m_SortedList = new List<Player>();
+        private List<Player> m_SortedList;
 
         public override void OnEnter()
         {
+            m_SortedList =  new List<Player>();
             m_SortedList.AddRange(GameEnvironment.CurrentPlayers); 
             m_SortedList.Sort(new PlayerCompare());
 
