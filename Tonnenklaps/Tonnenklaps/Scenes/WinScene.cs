@@ -26,7 +26,7 @@ namespace Tonnenklaps.Scenes
             {
                 p.Crown.Visible = true;
                 p.Crown.Enable();
-                m_SortedList.Add(-p.Point, p); //Trick for at sortere descending
+                m_SortedList.Add(-p.Points, p); //Trick for at sortere descending
             });
 
             

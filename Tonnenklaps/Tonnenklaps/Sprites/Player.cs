@@ -10,7 +10,8 @@ namespace Tonnenklaps.Sprites
 {
     public class Player : Sprite
     {
-        public Player(Vector2 startPos) : base(startPos)
+        public Player(Vector2 startPos)
+            : base(startPos)
         {
 
         }
@@ -37,22 +38,21 @@ namespace Tonnenklaps.Sprites
 
         private int m_Point;
 
-        public int Point
+
+
+        public override void Reset(Vector2 startPos)
         {
-            get 
-            { 
-                return m_Point; 
-            }
-            set 
-            {
-                m_Point = value;
-                if (m_Point < 0)
-                {
-                    m_Point = 0;
-                }
-            }
+            base.Reset(startPos);
+            Points = 0;
         }
 
-
+        public int Points
+        {
+            get
+            {
+                return m_Point;
+            }
+            set { m_Point = Math.Max(0, value); }
+        }
     }
 }
