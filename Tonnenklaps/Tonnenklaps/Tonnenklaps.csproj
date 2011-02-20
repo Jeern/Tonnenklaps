@@ -127,6 +127,7 @@
     <Compile Include="Sprites\Barrel.cs" />
     <Compile Include="Sprites\ButtonA.cs" />
     <Compile Include="Sprites\ButtonB.cs" />
+    <Compile Include="Sprites\ButtonBack.cs" />
     <Compile Include="Sprites\ButtonX.cs" />
     <Compile Include="Sprites\ButtonY.cs" />
     <Compile Include="Sprites\Club.cs" />
