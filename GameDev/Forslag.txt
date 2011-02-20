@@ -2,3 +2,4 @@
 Ændre Sprite så den *skal* have en ImageState i constructoren.
  - muliggør at anvende en Sprite uden at subklasse
  Hvorfor virker det ikke med IsButtonFirstDown på GamePadExtended?
+ Rart hvis man ikke SKAL implementere ResetImageState på Sprites subklasser.

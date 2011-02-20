@@ -6,6 +6,7 @@ using GameDev.Input;
 using GameDev.Scenes;
 using GameDev.Text;
 using GameDev.Utils;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Tonnenklaps.Commands;
 using Tonnenklaps.Sprites;
@@ -16,20 +17,27 @@ using Tonnenklaps.Sound;
 namespace Tonnenklaps.Scenes
 {
 
-     enum PlayStates {
+     public enum GameStates {
          GetReady,
         Playing,
-        Over
+        GameOver
         }
+
+    public enum FontSize
+    {
+     Small,
+        Big
+    }
 
     
 
     public class PlayingScene : Scene
     {
-        
+        private DateTime playStateChangedTime;
+        public GameStates m_currentPlayState;
 
-        public const int PointsForHit = 5;
-        public const int PointsForMiss = -1;
+        public const int PointsForHit = 3;
+        public const int PointsForMiss = -2;
 
         private RotatingBarrel m_Barrel;
 
@@ -42,8 +50,16 @@ namespace Tonnenklaps.Scenes
             m_Barrel = new RotatingBarrel(new Vector2(30,50));
             AddComponent(m_Barrel);
             m_Barrel.Reset();
-
+            
             base.LoadContent();
+        }
+
+        public void SetGameState(GameStates gamestate)
+        {
+            playStateChangedTime = DateTime.Now;
+            m_currentPlayState = gamestate;
+
+            m_Barrel.ShowGlowOnTargetStaff = (gamestate == GameStates.Playing);
         }
 
         public override void Draw(GameTime gameTime)
@@ -52,6 +68,21 @@ namespace Tonnenklaps.Scenes
             DrawBarrel(gameTime);
             DrawCrowns(gameTime);
             DrawClubs(gameTime);
+            switch (m_currentPlayState)
+            {
+                case GameStates.GetReady:
+                      DrawWithShadow("Get ready...", new Vector2(210, 180), FontSize.Big);
+                DrawWithShadow((3 - (DateTime.Now - playStateChangedTime).Seconds ).ToString(), new Vector2(340, 280), FontSize.Big);
+                    break;
+                case GameStates.Playing:
+                    break;
+                case GameStates.GameOver:
+                      DrawWithShadow("We have a winner!", new Vector2(100, 180), FontSize.Big);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+           
         }
 
         private void DrawClubs(GameTime gameTime)
@@ -86,7 +117,20 @@ namespace Tonnenklaps.Scenes
                                                            p.Crown.Visible = true;
                                                            p.Crown.Enable();
                                                        });
+            m_Barrel.Reset();
+            GameEnvironment.CurrentPlayers.ForEach(p =>
+                                                       {
+                                                           p.Points = 0;
+                                                           AddComponent(p.Club);
+                                                       });
+            SetGameState(GameStates.GetReady);
+        }
 
+        public override void OnExit()
+        {
+            base.OnExit();
+            GameEnvironment.CurrentPlayers.ForEach(p => RemoveComponent(p.Club));
+            
         }
 
         private Vector2 PointVectorOffset = new Vector2(45, 35);
@@ -96,8 +140,8 @@ namespace Tonnenklaps.Scenes
             foreach (var currentPlayer in GameEnvironment.CurrentPlayers)
             {
                 currentPlayer.Crown.Draw(gameTime);
-                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, currentPlayer.Points.ToString() , currentPlayer.Crown.Position + PointVectorOffset + Vector2.One * 4 , Color.Black);
-                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, currentPlayer.Points.ToString(), currentPlayer.Crown.Position + PointVectorOffset, Color.White);
+                DrawWithShadow(currentPlayer.Points.ToString(), currentPlayer.Crown.Position + PointVectorOffset,FontSize.Big);
+               
 
             }
 
@@ -114,36 +158,71 @@ namespace Tonnenklaps.Scenes
 
         public bool GameOver()
         {
-            return false;
+            return m_currentPlayState == GameStates.GameOver &&
+                   (DateTime.Now - playStateChangedTime) > TimeSpan.FromSeconds(3);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            //foreach player
-
-            //Check whether a new button was 
-            foreach (var player in GameEnvironment.CurrentPlayers)
+            switch (m_currentPlayState)
             {
-                foreach (var buttonValue in (Buttons[]) Enum.GetValues(typeof(Buttons)))
-                {
-                    if (GamepadExtended.Current(player.PlayerIndex).IsNewDown(buttonValue))
+                case GameStates.GetReady:
+                    if ((DateTime.Now - playStateChangedTime ) > TimeSpan.FromSeconds(3))
                     {
-
-                        if (m_Barrel.CheckHit(ColorUtils.ButtonToColor(buttonValue)))
-                        {
-                            player.Points += PointsForHit;
-                        }
-                        else
-                        {
-                            player.Points += PointsForMiss;
-                        }
+                        SetGameState(GameStates.Playing);
                     }
-                }
+                    break;
+
+                case GameStates.Playing:
+
+                     foreach (var player in GameEnvironment.CurrentPlayers)
+                     {
+                         foreach (var buttonValue in (Buttons[]) Enum.GetValues(typeof (Buttons)))
+                         {
+                             if (GamepadExtended.Current(player.PlayerIndex).IsNewDown(buttonValue))
+                             {
+                                 player.Club.Slå();
+                                 if (m_Barrel.CheckHit(ColorUtils.ButtonToColor(buttonValue)))
+                                 {
+                                     player.Points += PointsForHit;
+                                     Sound.Sounds.PlayPoint(player.PlayerIndex);
+                                     if (m_Barrel.StavesLeft == 0)
+                                     {
+                                         SetGameState(GameStates.GameOver);
+                                     }
+                                 }
+                                 else
+                                 {
+                                     player.Points += PointsForMiss;
+                                     Sound.Sounds.PlayBarn();
+                                 }
+                             }
+                         }
+                     }
+                    break;
+                case GameStates.GameOver:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+
+        
+
+               
+                
+            
         }
 
+        private void DrawWithShadow(string text, Vector2 position, FontSize size)
+        {
+            SpriteFont fontToUse = size == FontSize.Small
+                                       ? GameEnvironment.FastelavnsFont
+                                       : GameEnvironment.FastelavnsFontBig;
+            GameDevGame.Current.SpriteBatch.DrawString(fontToUse, text, position + Vector2.One * 4, Color.Black);
+            GameDevGame.Current.SpriteBatch.DrawString(fontToUse,text, position, Color.White);
+        }
 
     }
 }

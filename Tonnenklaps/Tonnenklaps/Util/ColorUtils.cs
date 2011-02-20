@@ -31,7 +31,7 @@ namespace Tonnenklaps.Util
         }
 
 
-        public static Color GetRandomColor(PossibleColors color)
+        public static Color ConvertColor(PossibleColors color)
         {
             switch (color)
             {

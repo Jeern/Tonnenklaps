@@ -20,10 +20,11 @@ namespace Tonnenklaps.Sprites
         public VisualStaff[] m_VisualStaves = new VisualStaff[NumberOfStaves];
         Texture2D[] Stafftextures = new Texture2D[NumberOfStaves * NumberOfVisualRepresentationsPerStaff];
         private Random rnd = new Random();
+        public bool ShowGlowOnTargetStaff { get; set; }
+        protected Sprite[] m_glowImages = new Sprite[3];
 
-        protected  Sprite [] m_glowImages = new Sprite[3];
-
-        public Barrel(Vector2 position) : base(GameDevGame.Current)
+        public Barrel(Vector2 position)
+            : base(GameDevGame.Current)
         {
             m_CurrentPosition = Vector2.Zero;
             m_StartPosition = position;
@@ -31,7 +32,7 @@ namespace Tonnenklaps.Sprites
             for (int i = 0; i < NumberOfStaves; i++)
             {
                 m_PhysicalStaves[i] = new PhysicalStaff();
-                
+
             }
         }
 
@@ -54,22 +55,22 @@ namespace Tonnenklaps.Sprites
                 {
                     //Barrel_00_00
                     string imageName = string.Format("Barrel\\Barrel_{0:00}_{1:00}", staffCounter, imageCounter);
-                    currentTexture  =GameDevGame.Current.Content.Load<Texture2D>(imageName);
+                    currentTexture = GameDevGame.Current.Content.Load<Texture2D>(imageName);
 
-                    Stafftextures[staffCounter*NumberOfVisualRepresentationsPerStaff + imageCounter] = currentTexture;
+                    Stafftextures[staffCounter * NumberOfVisualRepresentationsPerStaff + imageCounter] = currentTexture;
                     imageStates[imageCounter] = currentTexture;
                 }
 
                 m_VisualStaves[staffCounter] = new VisualStaff(this.m_StartPosition, staffCounter, imageStates);
-                
-                
+
+
             }
 
 
 
             for (int i = 0; i < NumberOfVisualRepresentationsPerStaff; i++)
             {
-                             string glowImageName = string.Format(@"Barrel\Glowing\Barrel_00_{0:00}_border", i);
+                string glowImageName = string.Format(@"Barrel\Glowing\Barrel_00_{0:00}_border", i);
                 m_glowImages[i] = new StaffGlow(this.m_StartPosition, GameDevGame.Current.Content.Load<Texture2D>(glowImageName));
 
             }
@@ -86,13 +87,13 @@ namespace Tonnenklaps.Sprites
             }
 
             m_VisualStaves[0].Targetable = true;
-        
+
             SetStartPositions();
         }
 
         private void SetStartPositions()
         {
-           SetPosition(m_StartPosition);
+            SetPosition(m_StartPosition);
         }
 
         public override void Update(GameTime gameTime)
@@ -102,13 +103,13 @@ namespace Tonnenklaps.Sprites
 
             for (int i = 0; i < NumberOfStaves; i++)
             {
-                Color aColor = ColorUtils.GetRandomColor(m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Color);
+                Color aColor = ColorUtils.ConvertColor(m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Color);
 
                 m_VisualStaves[i].TheColor = aColor;
-                m_VisualStaves[i].ColorWhenTargetable =  new Color(Math.Min( (byte)255, aColor.R+80),
+                m_VisualStaves[i].ColorWhenTargetable = new Color(Math.Min((byte)255, aColor.R + 80),
                     Math.Min((byte)255, aColor.G + 80),
                     Math.Min((byte)255, aColor.B + 80));
-               
+
                 m_VisualStaves[i].Visible = !m_PhysicalStaves[m_VisualStaves[i].PhysicalStaffIndex].Destroyed;
             }
         }
@@ -134,8 +135,8 @@ namespace Tonnenklaps.Sprites
 
         private Vector2 m_CurrentPosition;
         private Vector2 m_StartPosition;
-        
- 
+
+
         public void SetPosition(Vector2 position)
         {
             foreach (VisualStaff visualStaff in m_VisualStaves)
@@ -161,6 +162,20 @@ namespace Tonnenklaps.Sprites
             }
         }
 
-        
+        public int StavesLeft
+        {
+            get
+            {
+                int number = 0;
+                for (int i = 0; i < NumberOfStaves; i++)
+                {
+                    if (!m_PhysicalStaves[i].Destroyed)
+                    {
+                        number++;
+                    }
+                }
+                return number;
+            }
+        }
     }
 }
