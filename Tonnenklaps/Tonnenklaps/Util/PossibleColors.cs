@@ -10,6 +10,7 @@ namespace Tonnenklaps.Util
         Yellow = 0,
         Blue = 1,
         Red = 2,
-        Green = 3
+        Green = 3,
+        None = -1
     }
 }

@@ -3,11 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Tonnenklaps.Util
 {
     public static class ColorUtils
     {
+        public static PossibleColors ButtonToColor(Buttons button)
+        {
+            switch (button)
+            {
+                case Buttons.A:
+                    return PossibleColors.Green;
+
+                case Buttons.B:
+                    return PossibleColors.Red;
+
+                case Buttons.X:
+                    return PossibleColors.Blue;
+
+                case Buttons.Y:
+                    return PossibleColors.Yellow;
+
+                default:
+                    return PossibleColors.None;
+            }
+        }
+
+
         public static Color GetRandomColor(PossibleColors color)
         {
             switch (color)

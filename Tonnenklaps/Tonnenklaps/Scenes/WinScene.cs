@@ -7,6 +7,7 @@ using Tonnenklaps.Sound;
 using Tonnenklaps.Util;
 using Microsoft.Xna.Framework;
 using Tonnenklaps.Sprites;
+using GameDev.Utils;
 
 namespace Tonnenklaps.Scenes
 {
@@ -16,17 +17,17 @@ namespace Tonnenklaps.Scenes
         {
         }
 
-        private SortedList<int, Player> m_SortedList;
+        private List<Player> m_SortedList;
 
         public override void OnEnter()
         {
-            m_SortedList = new SortedList<int, Player>();
+            m_SortedList = GameEnvironment.CurrentPlayers;
 
             GameEnvironment.CurrentPlayers.ForEach(p =>
             {
                 p.Crown.Visible = true;
                 p.Crown.Enable();
-                m_SortedList.Add(-p.Points, p); //Trick for at sortere descending
+//                m_SortedList.Add(-p.Points, p); //Trick for at sortere descending
             });
 
             
@@ -44,9 +45,11 @@ namespace Tonnenklaps.Scenes
             float y = 10;
             foreach (var player in m_SortedList)
             {
-                player.Value.Crown.Position = new Vector2(10, y);
-                y += 190;
-                player.Value.Crown.Draw(gameTime);
+                player.Crown.Position = new Vector2(10, y);
+                y += 150;
+                player.Crown.Draw(gameTime);
+                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, player.Points.ToString(), new Vector2(220, y-90), Color.Black);
+
             }
 
         }
