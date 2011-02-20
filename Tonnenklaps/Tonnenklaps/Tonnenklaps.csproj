@@ -125,12 +125,17 @@
     <Compile Include="Sound\Music.cs" />
     <Compile Include="Sound\Sounds.cs" />
     <Compile Include="Sprites\Barrel.cs" />
+    <Compile Include="Sprites\ButtonA.cs" />
+    <Compile Include="Sprites\ButtonB.cs" />
+    <Compile Include="Sprites\ButtonX.cs" />
+    <Compile Include="Sprites\ButtonY.cs" />
     <Compile Include="Sprites\Club.cs" />
     <Compile Include="Sprites\Crown.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\RotatingBarrel.cs" />
     <Compile Include="Sprites\StaffGlow.cs" />
     <Compile Include="Sprites\StaticBackground.cs" />
+    <Compile Include="Sprites\StaticSprite.cs" />
     <Compile Include="Sprites\VisualStaff.cs" />
     <Compile Include="TonnenklapsGame.cs" />
     <Compile Include="Util\ColorUtils.cs" />
