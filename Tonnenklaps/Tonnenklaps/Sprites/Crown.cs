@@ -13,6 +13,7 @@ namespace Tonnenklaps.Sprites
     public class Crown : Sprite
     {
         private ImageState m_rotatingImageState;
+        private ImageState m_stoppedImageState;
 
         private int m_imagesInQuarterTurn = 6;
 
@@ -30,6 +31,8 @@ namespace Tonnenklaps.Sprites
                 images[i] = GameDevGame.Current.Content.Load<Texture2D>(string.Format(@"Crown\crown{0:0000}", i));
             }
 
+            m_stoppedImageState = GameDevGame.Current.Content.Load<Texture2D>(@"Crown\crown0000");
+
             m_rotatingImageState = new ImageState(images, StateChangeType.Repeating);
             this.ImageState = m_rotatingImageState;
             this.ImageState.SetDefaultDelay(150);
@@ -40,6 +43,15 @@ namespace Tonnenklaps.Sprites
         protected override ImageState ResetImageState()
         {
             return m_rotatingImageState;
+        }
+
+        public void StopRotation()
+        {
+            this.ImageState = m_stoppedImageState;
+        }
+        public void StartRotation()
+        {
+            this.ImageState = m_stoppedImageState;
         }
 
 
