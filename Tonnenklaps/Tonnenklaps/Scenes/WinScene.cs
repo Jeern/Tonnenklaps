@@ -48,7 +48,8 @@ namespace Tonnenklaps.Scenes
                 player.Crown.Position = new Vector2(10, y);
                 y += 150;
                 player.Crown.Draw(gameTime);
-                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, player.Points.ToString(), new Vector2(220, y-90), Color.Black);
+                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, player.Points.ToString(), new Vector2(205, y - 120) + Vector2.One * 4, Color.Black);
+                GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFontBig, player.Points.ToString(), new Vector2(205, y - 120) , Color.White);
 
             }
 
