@@ -42,6 +42,8 @@ namespace Tonnenklaps.Scenes
         private RotatingBarrel m_Barrel;
 
         private List<Vector2> CrownPositions;
+        private List<SimpleText> PointDisplays;
+
 
         protected override void LoadContent()
         {
@@ -77,7 +79,7 @@ namespace Tonnenklaps.Scenes
                 case GameStates.Playing:
                     break;
                 case GameStates.GameOver:
-                      DrawWithShadow("Round over!", new Vector2(100, 180), FontSize.Big);
+                      DrawWithShadow("Round over!", new Vector2(130, 180), FontSize.Big);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -93,19 +95,27 @@ namespace Tonnenklaps.Scenes
 
         public override void OnEnter()
         {
+
+            Vector2 crownSize = new Vector2(GameEnvironment.CurrentPlayers[0].Crown.Width,
+                                            GameEnvironment.CurrentPlayers[0].Crown.Height);
+
             base.OnEnter();
 
             CrownPositions = new List<Vector2>();
+            PointDisplays = new List<SimpleText>();
 
             CrownPositions.Add(new Vector2(10));
+            PointDisplays.Add(new SimpleText("0", CrownPositions[0] + crownSize/2 + Vector2.UnitY * 15, GameEnvironment.FastelavnsFontBig, Color.White, true));
             CrownPositions.Add(
-                new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10, 10));
+                new Vector2(GameEnvironment.GameWidth - crownSize.X - 10, 10));
+            PointDisplays.Add(new SimpleText("0", CrownPositions[1] + crownSize / 2 + Vector2.UnitY * 15, GameEnvironment.FastelavnsFontBig, Color.White, true));
             CrownPositions.Add(new Vector2(10,
-                                           GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height -10));
+                                           GameEnvironment.GameHeight - crownSize.Y -10));
+            PointDisplays.Add(new SimpleText("0", CrownPositions[2] + crownSize / 2 + Vector2.UnitY * 15, GameEnvironment.FastelavnsFontBig, Color.White, true));
             CrownPositions.Add(
-                new Vector2(GameEnvironment.GameWidth - GameEnvironment.CurrentPlayers[0].Crown.Width - 10,
-                            GameEnvironment.GameHeight - GameEnvironment.CurrentPlayers[0].Crown.Height - 10));
-
+                new Vector2(GameEnvironment.GameWidth - crownSize.X - 10,
+                            GameEnvironment.GameHeight - crownSize.Y  - 10));
+            PointDisplays.Add(new SimpleText("0", CrownPositions[3] + crownSize / 2 + Vector2.UnitY * 15, GameEnvironment.FastelavnsFontBig, Color.White, true));
 
             for (int playerCounter = 0; playerCounter < GameEnvironment.CurrentPlayers.Count; playerCounter++)
             {
@@ -113,16 +123,16 @@ namespace Tonnenklaps.Scenes
             }
 
             GameEnvironment.CurrentPlayers.ForEach(p =>
-                                                       {
-                                                           p.Crown.Visible = true;
-                                                           p.Crown.Enable();
-                                                       });
+            {
+                p.Crown.Visible = true;
+                p.Crown.Enable();
+            });
             m_Barrel.Reset();
             GameEnvironment.CurrentPlayers.ForEach(p =>
-                                                       {
-                                                           p.Points = 0;
-                                                           AddComponent(p.Club);
-                                                       });
+            {
+                p.Points = 0;
+                AddComponent(p.Club);
+            });
             SetGameState(GameStates.GetReady);
         }
 
@@ -137,15 +147,11 @@ namespace Tonnenklaps.Scenes
 
         private void DrawCrowns(GameTime gameTime)
         {
-            foreach (var currentPlayer in GameEnvironment.CurrentPlayers)
+            for (int i = 0; i < GameEnvironment.CurrentPlayers.Count; i++)
             {
-                currentPlayer.Crown.Draw(gameTime);
-                DrawWithShadow(currentPlayer.Points.ToString(), currentPlayer.Crown.Position + PointVectorOffset,FontSize.Big);
-               
-
+                GameEnvironment.CurrentPlayers[i].Crown.Draw(gameTime);
+                PointDisplays[i].Draw(gameTime);
             }
-
-
         }
 
         private void DrawBarrel(GameTime gameTime)
@@ -208,6 +214,11 @@ namespace Tonnenklaps.Scenes
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            for (int i = 0; i < GameEnvironment.CurrentPlayers.Count; i++)
+            {
+                PointDisplays[i].Text = GameEnvironment.CurrentPlayers[i].Points.ToString();
+            }
         }
 
         private void DrawWithShadow(string text, Vector2 position, FontSize size)
@@ -219,5 +230,7 @@ namespace Tonnenklaps.Scenes
             GameDevGame.Current.SpriteBatch.DrawString(fontToUse,text, position, Color.White);
         }
 
+
+    
     }
 }

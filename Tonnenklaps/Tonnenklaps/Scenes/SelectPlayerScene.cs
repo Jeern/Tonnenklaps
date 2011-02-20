@@ -38,6 +38,8 @@ namespace Tonnenklaps.Scenes
 
         protected override void LoadContent()
         {
+            m_ButtonA = new ButtonA(new Vector2(720, 525), "To Play");
+            AddComponent(m_ButtonA);
             CheckAndSetup();
             m_nextCheckForConnections = DateTime.Now.AddSeconds(2);
         }
@@ -66,30 +68,17 @@ namespace Tonnenklaps.Scenes
 
           GameEnvironment.CurrentPlayers = new List<Player>();
             Crown crown = new Crown();
-           // crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.One, crown);
-          //  AddComponent(crown);
-          //  crownX += Spacing;
             crown = new Crown();
-            //crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Two, crown);
-          //  AddComponent(crown);
-            //crownX += Spacing;
             crown = new Crown();
-           // crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Three, crown);
-           // AddComponent(crown);
-           // crownX += Spacing;
             crown = new Crown();
-            //crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Four, crown);
-           // AddComponent(crown);
-            m_ButtonA = new ButtonA(new Vector2(720, 525), "To Play");
-            AddComponent(m_ButtonA);
 
 
             m_texts.Add(new SimpleText(GetText("P1", PlayerIndex.One), new Vector2(textX, textY), GameEnvironment.FastelavnsFont, Color.White, true));
@@ -108,8 +97,8 @@ namespace Tonnenklaps.Scenes
                 crown.Visible = false;
             }
 
-            int clubYPos = 0;
-            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(300, clubYPos += 50), Color.SandyBrown));// p.TheColor));
+            int clubYPos = 10;
+            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(250, clubYPos += 100), Color.SandyBrown));// p.TheColor));
 
         }
 
