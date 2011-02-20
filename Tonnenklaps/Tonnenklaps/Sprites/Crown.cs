@@ -54,6 +54,11 @@ namespace Tonnenklaps.Sprites
             this.ImageState = m_stoppedImageState;
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
+
 
     }
 }
