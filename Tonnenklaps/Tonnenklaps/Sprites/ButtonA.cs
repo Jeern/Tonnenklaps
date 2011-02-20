@@ -13,7 +13,7 @@ namespace Tonnenklaps.Sprites
 {
     public class ButtonA : StaticSprite
     {
-        public ButtonA(Vector2 vector, string text) : base(vector, @"Buttons\ButtonA", text)
+        public ButtonA(Vector2 vector, string text) : base(vector, @"Buttons\ButtonA", text, false)
         {
         }
 

@@ -14,11 +14,13 @@ namespace Tonnenklaps.Sprites
     public class StaticSprite : Sprite
     {
         private string m_Text;
+        private bool m_Left;
 
-        public StaticSprite(Vector2 vector, string textureFile, string text)
+        public StaticSprite(Vector2 vector, string textureFile, string text, bool left)
             : base(vector)
         {
             m_Text = text;
+            m_Left = left;
             ImageState = new ImageState(new GameImage(Game.Content.Load<Texture2D>(textureFile), 0), StateChangeType.None);
         }
 
@@ -34,7 +36,15 @@ namespace Tonnenklaps.Sprites
             base.Draw(gameTime);
             if (!string.IsNullOrWhiteSpace(m_Text))
             {
-                Vector2 textOffSet = new Vector2(77, 20);
+                Vector2 textOffSet;
+                if (m_Left)
+                {
+                    textOffSet = new Vector2(77, 20);
+                }
+                else
+                {
+                    textOffSet = -GameEnvironment.FastelavnsFont.MeasureString(m_Text) + new Vector2(-10, 50); ;
+                }
                 GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFont, m_Text, Position + textOffSet + Vector2.One * 2, Color.Black);
                 GameDevGame.Current.SpriteBatch.DrawString(GameEnvironment.FastelavnsFont, m_Text, Position + textOffSet, Color.White);
             }

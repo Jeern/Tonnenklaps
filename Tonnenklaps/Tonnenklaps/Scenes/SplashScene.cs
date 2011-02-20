@@ -22,7 +22,7 @@ namespace Tonnenklaps.Scenes
 
         protected override void LoadContent()
         {
-            m_ButtonA = new ButtonA(new Vector2(620, 525), "To Play");
+            m_ButtonA = new ButtonA(new Vector2(720, 525), "To Play");
             AddComponent(m_ButtonA);
             base.LoadContent();
         }
