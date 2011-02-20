@@ -131,7 +131,7 @@ namespace Tonnenklaps.Scenes
                     if (GamepadExtended.Current(player.PlayerIndex).IsNewDown(buttonValue))
                     {
 
-                        if (m_Barrel.CheckHit(ButtonToColor(buttonValue)))
+                        if (m_Barrel.CheckHit(ColorUtils.ButtonToColor(buttonValue)))
                         {
                             player.Points += PointsForHit;
                         }
@@ -144,26 +144,6 @@ namespace Tonnenklaps.Scenes
             }
         }
 
-        PossibleColors ButtonToColor(Buttons button)
-        {
-            switch (button)
-            {
-                case Buttons.A:
-                    return PossibleColors.Green;
-                    
-                case Buttons.B:
-                    return PossibleColors.Red;
-
-                case Buttons.X:
-                    return PossibleColors.Blue;
-
-                case Buttons.Y:
-                    return PossibleColors.Yellow;
-
-                default:
-                    throw new ArgumentOutOfRangeException("button");
-            }
-        }
 
     }
 }
