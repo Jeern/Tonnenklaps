@@ -20,6 +20,7 @@ namespace Tonnenklaps.Sprites
        {
            this.Position = position;
            this.TheColor = color;
+           this.Scale = 1.1F;
            Initialize();
        }
 
