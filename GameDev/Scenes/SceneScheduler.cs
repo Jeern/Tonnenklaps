@@ -26,6 +26,7 @@ namespace GameDev.Scenes
             if (CurrentScene == null)
             {
                 CurrentScene = sceneChange.From;
+                StartMainTune();
             }
             if (m_SceneChanges.ContainsKey(sceneChange.From))
             {
