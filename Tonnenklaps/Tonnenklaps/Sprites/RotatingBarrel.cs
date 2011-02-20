@@ -15,6 +15,8 @@ namespace Tonnenklaps.Sprites
         public RotatingBarrel(Vector2 position)
             : base(position) {}
 
+
+        
         private TimeSpan m_LatestRotation = TimeSpan.MaxValue;
 
         public override void Update(GameTime gameTime)
@@ -58,7 +60,7 @@ namespace Tonnenklaps.Sprites
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            if (!this.m_PhysicalStaves[m_VisualStaves[0].PhysicalStaffIndex].Destroyed )
+            if (!this.m_PhysicalStaves[m_VisualStaves[0].PhysicalStaffIndex].Destroyed && ShowGlowOnTargetStaff )
             {
                 m_glowImages[m_rotationState].Draw(gameTime);   
             }
@@ -73,6 +75,7 @@ namespace Tonnenklaps.Sprites
             }
             else
             {
+                Sound.Sounds.PlayToendeRamt();
                 if (staffToHit.Color == color)
                 {
                     staffToHit.Destroyed = true;

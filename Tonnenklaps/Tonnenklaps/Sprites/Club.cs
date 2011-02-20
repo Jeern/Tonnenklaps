@@ -37,6 +37,7 @@ namespace Tonnenklaps.Sprites
            m_hittingState = new ImageState(hittingImages, StateChangeType.Forwarding);
 
            m_waitingState = new ImageState(GameDevGame.Current.Content.Load<Texture2D>(@"Club\club0000"), StateChangeType.None);
+           m_waitingState.SetDefaultDelay(20);
            this.ImageState = m_waitingState;
 
        }
@@ -51,7 +52,7 @@ namespace Tonnenklaps.Sprites
        public void Slå()
        {
 
-           ResetImageState();
+           this.ImageState = m_hittingState;
            m_hittingState.Reset();
        }
 

@@ -18,8 +18,7 @@ namespace Tonnenklaps.Sprites
 
         protected override ImageState ResetImageState()
         {
-            //Todo: iMPLEMENTER
-            throw new NotImplementedException();
+            return null;
         }
 
         public PlayerIndex PlayerIndex
