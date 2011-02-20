@@ -156,6 +156,7 @@
     <Compile Include="Sequencers\Sequencer.cs" />
     <Compile Include="Sequencers\StaticSequencer.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Text\SimpleText.cs" />
     <Compile Include="Text\TextUtil.cs" />
     <Compile Include="Utils\BaseTextures.cs" />
     <Compile Include="Utils\Camera.cs" />

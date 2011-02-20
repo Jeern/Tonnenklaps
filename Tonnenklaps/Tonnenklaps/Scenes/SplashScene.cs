@@ -27,21 +27,6 @@ namespace Tonnenklaps.Scenes
             base.LoadContent();
         }
 
-        public const int Opstartstid = 5000; //Milliseconds
-
-        public bool TimesUp(GameTime gameTime)
-        {
-            if (m_Started == TimeSpan.MaxValue)
-            {
-                m_Started = gameTime.TotalGameTime;
-            }
-            else if (gameTime.TotalGameTime.Subtract(m_Started).TotalMilliseconds > Opstartstid)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

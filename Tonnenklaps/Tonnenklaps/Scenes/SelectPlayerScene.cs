@@ -15,71 +15,101 @@ namespace Tonnenklaps.Scenes
 {
     public class SelectPlayerScene : StaticScene
     {
+        private DateTime m_nextCheckForConnections = DateTime.MinValue;
 
-        private List<Crown> m_Crowns = new List<Crown>();
-        private TextUtil m_TextUtil1;
-        private TextUtil m_TextUtil2;
-        private TextUtil m_TextUtil3;
-        private TextUtil m_TextUtil4;
+        private List<Crown> m_Crowns =  new List<Crown>();
+        
         private ButtonA m_ButtonA;
+        private List<SimpleText> m_texts = new List<SimpleText>();
 
         public SelectPlayerScene(string textureFile) : base(textureFile)
         {
+            LoadContent();
         }
 
-        private const int Spacing = 190;
+        public override void OnEnter()
+        {
+            Initialize();
+            base.OnEnter();
+            LoadContent();
+        }
+
+        private const int Spacing = 200;
 
         protected override void LoadContent()
         {
-            int textX = 90;
+            CheckAndSetup();
+            m_nextCheckForConnections = DateTime.Now.AddSeconds(2);
+        }
+
+        void CheckAndSetup()
+        {
+            m_Crowns.ForEach(acrown => { GameDevGame.Current.Components.Remove(acrown);
+            Components.Remove(acrown);
+            });
+            m_Crowns.Clear();
+            m_texts.ForEach(text => {GameDevGame.Current.Components.Remove(text);
+            Components.Remove(text);});
+            m_texts.Clear();
+            if (GameEnvironment.CurrentPlayers != null)
+            {
+                GameEnvironment.CurrentPlayers.ForEach(player => GameDevGame.Current.Components.Remove(player));
+                GameEnvironment.CurrentPlayers.Clear();
+            }
+            
+
+            int textX = 110;
             int crownX = 15;
+            
+            int crownY = 20;
+            int textY = crownY + 65;
 
-            m_TextUtil1 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil1.SetText(GetText("P1", PlayerIndex.One));
-            AddComponent(m_TextUtil1);
-            textX += Spacing;
-            m_TextUtil2 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil2.SetText(GetText("P2", PlayerIndex.Two));
-            AddComponent(m_TextUtil2);
-            textX += Spacing;
-            m_TextUtil3 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil3.SetText(GetText("P3", PlayerIndex.Three));
-            AddComponent(m_TextUtil3);
-            textX += Spacing;
-            m_TextUtil4 = new TextUtil(Vector2.Zero, GameEnvironment.FastelavnsFont, Color.Black, new Vector2(textX, 130), HorizontalAlignment.Left, VerticalAlignment.Top);
-            m_TextUtil4.SetText(GetText("P4", PlayerIndex.Four));
-            AddComponent(m_TextUtil4);
-
-            GameEnvironment.CurrentPlayers = new List<Player>();
-            var crown = new Crown();
-            //crown.Position = new Vector2(crownX, 20);
+          GameEnvironment.CurrentPlayers = new List<Player>();
+            Crown crown = new Crown();
+           // crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.One, crown);
-            AddComponent(crown);
-            crownX += Spacing;
+          //  AddComponent(crown);
+          //  crownX += Spacing;
             crown = new Crown();
             //crown.Position = new Vector2(crownX, 20);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Two, crown);
-            AddComponent(crown);
-            crownX += Spacing;
+          //  AddComponent(crown);
+            //crownX += Spacing;
             crown = new Crown();
-            //crown.Position = new Vector2(crownX, 10);
+           // crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Three, crown);
-            AddComponent(crown);
-            crownX += Spacing;
+           // AddComponent(crown);
+           // crownX += Spacing;
             crown = new Crown();
             //crown.Position = new Vector2(crownX, 10);
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Four, crown);
-            AddComponent(crown);
+           // AddComponent(crown);
             m_ButtonA = new ButtonA(new Vector2(720, 525), "To Play");
             AddComponent(m_ButtonA);
-            base.LoadContent();
+
+
+            m_texts.Add(new SimpleText(GetText("P1", PlayerIndex.One), new Vector2(textX, textY), GameEnvironment.FastelavnsFont, Color.White, true));
+            textX += Spacing;
+            m_texts.Add(new SimpleText(GetText("P2", PlayerIndex.Two), new Vector2(textX, textY), GameEnvironment.FastelavnsFont, Color.White, true));
+            textX += Spacing;
+            m_texts.Add(new SimpleText(GetText("P3", PlayerIndex.Three), new Vector2(textX, textY), GameEnvironment.FastelavnsFont, Color.White, true));
+            textX += Spacing;
+            m_texts.Add(new SimpleText(GetText("P4", PlayerIndex.Four), new Vector2(textX, textY), GameEnvironment.FastelavnsFont, Color.White, true));
+
+            
+            foreach (Crown acrown in m_Crowns)
+            {
+                acrown.Position = new Vector2(crownX, crownY);
+                crownX += Spacing;
+                crown.Visible = false;
+            }
 
             int clubYPos = 0;
-            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(300, clubYPos += 50), p.TheColor));
+            GameEnvironment.CurrentPlayers.ForEach(p => p.Club = new Club(new Vector2(300, clubYPos += 50), Color.SandyBrown));// p.TheColor));
 
         }
 
@@ -91,16 +121,7 @@ namespace Tonnenklaps.Scenes
             return "connect player";
         }
 
-        public override void OnEnter()
-        {
-            int crownX = 10;
-            foreach (Crown crown in m_Crowns)
-            {
-                crown.Position = new Vector2(crownX, 10);
-                crownX += Spacing;
-            }
-        }
-
+      
         private void SetPlayer(PlayerIndex playerIndex, Crown crown)
         {
             if (GamePad.GetCapabilities(playerIndex).IsConnected)
@@ -111,6 +132,7 @@ namespace Tonnenklaps.Scenes
                 player.Crown = crown;
                 crown.TheColor = player.TheColor;
                 GameEnvironment.CurrentPlayers.Add(player);
+                GameDevGame.Current.Components.Add(player);
             }
             else
             {
@@ -127,22 +149,24 @@ namespace Tonnenklaps.Scenes
             DrawCrowns(gameTime);
             DrawText(gameTime);
             DrawButton(gameTime);
+            
         }
 
         private void DrawCrowns(GameTime gameTime)
         {
+            bool visible = false;
             foreach (Crown crown in m_Crowns)
             {
+                visible = crown.Visible;
+                crown.Visible = true;
                 crown.Draw(gameTime);
+                crown.Visible = visible;
             }
         }
 
         private void DrawText(GameTime gameTime)
         {
-            m_TextUtil1.Draw(gameTime);
-            m_TextUtil2.Draw(gameTime);
-            m_TextUtil3.Draw(gameTime);
-            m_TextUtil4.Draw(gameTime);
+            m_texts.ForEach(t => t.Draw(gameTime));
         }
         private void DrawButton(GameTime gameTime)
         {
@@ -152,6 +176,16 @@ namespace Tonnenklaps.Scenes
             }
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (m_nextCheckForConnections < DateTime.Now)
+            {
+                m_nextCheckForConnections = DateTime.Now.AddSeconds(2);
+                CheckAndSetup();
+            }
+            m_Crowns.ForEach(c => c.Update(gameTime));
+        }
 
 
     }

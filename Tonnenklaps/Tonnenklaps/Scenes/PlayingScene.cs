@@ -77,7 +77,7 @@ namespace Tonnenklaps.Scenes
                 case GameStates.Playing:
                     break;
                 case GameStates.GameOver:
-                      DrawWithShadow("We have a winner!", new Vector2(100, 180), FontSize.Big);
+                      DrawWithShadow("Round over!", new Vector2(100, 180), FontSize.Big);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -187,6 +187,7 @@ namespace Tonnenklaps.Scenes
                                  if (m_Barrel.CheckHit(ColorUtils.ButtonToColor(buttonValue)))
                                  {
                                      player.Points += PointsForHit;
+                                     player.HitFeedback();
                                      Sound.Sounds.PlayPoint(player.PlayerIndex);
                                      if (m_Barrel.StavesLeft == 0)
                                      {
@@ -207,12 +208,6 @@ namespace Tonnenklaps.Scenes
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-        
-
-               
-                
-            
         }
 
         private void DrawWithShadow(string text, Vector2 position, FontSize size)
