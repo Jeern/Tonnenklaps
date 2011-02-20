@@ -57,7 +57,7 @@ namespace Tonnenklaps.Sprites
            m_hittingState.Reset();
        }
 
-       private readonly Vector2 m_OffSet = new Vector2(0, 150);
+       private readonly Vector2 m_OffSet = new Vector2(0, 115);
 
        public override void Draw(GameTime gameTime, Color color)
        {

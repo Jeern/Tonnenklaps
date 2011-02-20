@@ -101,7 +101,7 @@ namespace Tonnenklaps.Scenes
             GameEnvironment.CurrentPlayers.ForEach(p => { 
                 if(p.Club == null)
                 {
-                    p.Club = new Club(new Vector2(250, clubYPos += 100), Color.SandyBrown);
+                    p.Club = new Club(new Vector2(250, clubYPos += 85), Color.SandyBrown);
                 }
             });// p.TheColor));
 
