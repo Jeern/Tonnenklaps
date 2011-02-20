@@ -21,7 +21,7 @@ namespace Tonnenklaps.Scenes
         private TextUtil m_TextUtil2;
         private TextUtil m_TextUtil3;
         private TextUtil m_TextUtil4;
-
+        private ButtonA m_ButtonA;
 
         public SelectPlayerScene(string textureFile) : base(textureFile)
         {
@@ -74,6 +74,8 @@ namespace Tonnenklaps.Scenes
             m_Crowns.Add(crown);
             SetPlayer(PlayerIndex.Four, crown);
             AddComponent(crown);
+            m_ButtonA = new ButtonA(new Vector2(720, 525), "To Play");
+            AddComponent(m_ButtonA);
             base.LoadContent();
 
             int clubYPos = 0;
@@ -123,6 +125,7 @@ namespace Tonnenklaps.Scenes
             base.Draw(gameTime);
             DrawCrowns(gameTime);
             DrawText(gameTime);
+            DrawButton(gameTime);
         }
 
         private void DrawCrowns(GameTime gameTime)
@@ -140,6 +143,15 @@ namespace Tonnenklaps.Scenes
             m_TextUtil3.Draw(gameTime);
             m_TextUtil4.Draw(gameTime);
         }
+        private void DrawButton(GameTime gameTime)
+        {
+            if (m_ButtonA.Visible)
+            {
+                m_ButtonA.Draw(gameTime);
+            }
+        }
+
+
 
     }
 }
