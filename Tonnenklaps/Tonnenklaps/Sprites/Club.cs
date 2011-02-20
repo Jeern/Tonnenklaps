@@ -57,5 +57,23 @@ namespace Tonnenklaps.Sprites
            m_hittingState.Reset();
        }
 
+       private readonly Vector2 m_OffSet = new Vector2(0, 150);
+
+       public override void Draw(GameTime gameTime, Color color)
+       {
+           if (Visible)
+           {
+               GameDevGame.Current.SpriteBatch.Draw(ImageState,
+                  Position - (m_Camera().Position * Layer + m_OffSet),
+                  null,
+                  color,
+                  0F,
+                  Vector2.Zero, //Formerly Middle
+                  Scale,
+                  SpriteEffects.None,
+                  Math.Min(Layer, 1f)); //Layer
+           }
+       }
+
    }
 }
